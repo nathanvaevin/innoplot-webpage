@@ -167,6 +167,52 @@ em{font-style:normal;color:var(--blue)}
 .pill:hover{transform:translateY(-4px);box-shadow:0 26px 44px -16px rgba(0,0,0,.55)}
 .pill i{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--blue);display:grid;place-items:center;color:var(--blue);font-style:normal}
 
+/* FULL INTEGRATED PROCESS (fades white -> black on hover) */
+.process{position:relative;background:#fff;color:#000;overflow:hidden;cursor:default}
+.process .dark{position:absolute;inset:0;background:#000;opacity:0;transition:opacity .9s ease}
+.process:hover .dark,.process.on .dark{opacity:1}
+.process .wrap{position:relative;padding-top:90px;padding-bottom:110px;min-height:520px}
+.process h2{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(2.2rem,4.4vw,3.8rem);letter-spacing:-.03em;line-height:1.1;color:#000;transition:color .9s}
+.process h2 span{display:block;color:#8a8a94;transition:color .9s}
+.process:hover h2,.process.on h2{color:#fff}
+.process:hover h2 span,.process.on h2 span{color:#a8b4cc}
+.process .body{max-width:900px;margin-top:40px;font-size:clamp(1.05rem,1.7vw,1.4rem);line-height:1.7;color:#fff;opacity:0;transform:translateY(14px);transition:opacity .9s .15s,transform .9s .15s}
+.process:hover .body,.process.on .body{opacity:1;transform:none}
+.process .body p+p{margin-top:6px}
+.process .hint{position:absolute;left:24px;bottom:40px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#9a9aa5;transition:opacity .4s}
+.process:hover .hint,.process.on .hint{opacity:0}
+.process .circle{position:absolute;right:7%;bottom:12%;width:clamp(110px,12vw,200px);aspect-ratio:1;border-radius:50%;background:#5b7f9c;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.process:hover .circle,.process.on .circle{transform:translate(20px,-40px) scale(1.12)}
+
+/* CONTACT */
+.contact{background:#000;color:#fff;padding:100px 0 110px;position:relative}
+.contact h2{font-family:'Inter',sans-serif;font-weight:300;font-size:clamp(2.2rem,4.4vw,3.8rem);letter-spacing:-.03em;line-height:1.1}
+.contact h2 span{display:block;color:#a8b4cc}
+.cform{max-width:540px;margin-top:56px}
+.cf{position:relative;margin-bottom:22px}
+.cf input,.cf textarea{width:100%;background:transparent;border:0;border-bottom:1px solid #8a8a8a;color:#fff;font:inherit;padding:26px 0 10px;outline:none;transition:border-color .25s;resize:none}
+.cf label{position:absolute;left:0;top:26px;font-size:.88rem;color:#cfcfcf;pointer-events:none;transition:.2s;transform-origin:left}
+.cf input:focus,.cf textarea:focus{border-color:var(--mint)}
+.cf input:focus+label,.cf input:not(:placeholder-shown)+label,.cf textarea:focus+label,.cf textarea:not(:placeholder-shown)+label{top:2px;font-size:.72rem;color:var(--mint)}
+.cform .chk{display:flex;gap:12px;align-items:center;font-size:.88rem;color:#ddd;margin:26px 0 28px}
+.cform .chk input{width:17px;height:17px;accent-color:var(--mint)}
+.cform button{background:#fff;color:#000;border:0;border-radius:99px;padding:14px 30px;font:500 .95rem 'Inter',sans-serif;cursor:pointer;transition:.25s}
+.cform button:hover{background:var(--mint);transform:translateY(-2px)}
+.cthanks{display:none;max-width:540px;margin-top:56px;padding:34px;border:1px solid #333;border-radius:20px}
+.cthanks h3{font-size:1.6rem;margin-bottom:8px;color:var(--mint)}
+.contact.sent .cform{display:none}.contact.sent .cthanks{display:block}
+
+/* FOOTER */
+.foot{background:#fff;padding:60px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:36px;align-items:center}
+.flogo{display:flex;align-items:center;gap:14px;font-size:clamp(2.4rem,4.5vw,4rem);font-weight:500;letter-spacing:-.03em;color:#2b2b2e}
+.flogo i{width:.95em;height:.95em;border-radius:50%;background:#a9c3cf;display:grid;place-items:center;color:#fff;font-style:normal;font-size:.55em;font-weight:700}
+.foot ul{list-style:none;font-size:.9rem;line-height:1.6}
+.foot a{text-decoration:none;color:var(--ink)}
+.foot a:hover{color:var(--blue)}
+.foot address{font-style:normal;font-size:.9rem;line-height:1.7}
+.copy{font-size:.82rem;color:var(--muted);margin-top:46px}
+
 /* PLACEHOLDER for next */
 .next{background:var(--navy-deep);color:#9fb6c9;text-align:center;padding:50px 24px;font-size:.9rem}
 
@@ -181,7 +227,8 @@ em{font-style:normal;color:var(--blue)}
   .stats,.pillars{grid-template-columns:1fr 1fr}
   .portrait{max-width:300px}
 }
-@media(max-width:640px){.cards .grid3{grid-template-columns:1fr}.fc{height:520px}.stats,.pillars{grid-template-columns:1fr}.lang-sw{display:none}}
+@media(max-width:980px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.foot-grid{grid-template-columns:1fr}.cards .grid3{grid-template-columns:1fr}.fc{height:520px}.stats,.pillars{grid-template-columns:1fr}.lang-sw{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.flip{transform:none!important;opacity:1!important}}
 </style>
 </head>
@@ -328,7 +375,6 @@ em{font-style:normal;color:var(--blue)}
     </div>
   </div>
 </section>
-</main>
 
 <section class="diff">
   <div class="diff-intro" id="diffIntro">
@@ -383,7 +429,55 @@ em{font-style:normal;color:var(--blue)}
   </div>
 </section>
 
-<div class="next" id="contact">More sections coming… (rest of the homepage)</div>
+<section class="process" id="process">
+  <div class="dark"></div>
+  <div class="wrap">
+    <h2>Full Integrated Process<span>Choosing the right Approach</span></h2>
+    <div class="body">
+      <p>Our differentiated approach bridges strategy and execution, helping organizations navigate complex innovation challenges with clarity and precision.</p>
+      <p>We bring together the right stakeholders, manage paradoxes, and turn contradictions into progress.</p>
+      <p>It’s not about trade-offs, but integration, aligning stability with innovation, and vision with action.</p>
+    </div>
+    <span class="hint">Hover to explore</span>
+    <div class="circle"></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>InnoPlot<br>Business &amp; Technological Transformations<span>Book a Consult</span></h2>
+    <form class="cform" id="cform">
+      <div class="cf"><input id="fn" placeholder=" " autocomplete="given-name"><label for="fn">First name</label></div>
+      <div class="cf"><input id="ln" placeholder=" " autocomplete="family-name"><label for="ln">Last name</label></div>
+      <div class="cf"><input id="co" placeholder=" " autocomplete="organization"><label for="co">Company name</label></div>
+      <div class="cf"><input id="em" type="email" required placeholder=" " autocomplete="email"><label for="em">Email *</label></div>
+      <div class="cf"><textarea id="ds" rows="2" placeholder=" "></textarea><label for="ds">Short Description of Inquiry</label></div>
+      <label class="chk"><input type="checkbox" required> Yes, I accept the terms and conditions *</label>
+      <button type="submit">Start the conversation</button>
+    </form>
+    <div class="cthanks"><h3>Thank you!</h3><p>We have received your inquiry and will get back to you shortly.</p></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="flogo">InnoPlot<i>↗</i></div>
+      <ul>
+        <li><a href="#expertise">Expertise</a></li><li><a href="#services">Services</a></li>
+        <li><a href="#">InnoPlot Academy</a></li><li><a href="#">PeerPlatforms</a></li><li><a href="#">About Us</a></li>
+      </ul>
+      <div style="font-size:.9rem;line-height:1.7">
+        <!-- email is cut off in the screenshot: "@InnoPlot.nl" — please confirm the full address -->
+        <a href="#">@InnoPlot.nl</a><br><a href="tel:+31646934577">+31 (0) 6 46 93 45 77</a>
+      </div>
+      <address>Gebouw N<br>Haaksbergerstraat 67<br>7554 PA Hengelo<br>Rotterdam | Den Haag | Leiden | Bilthoven</address>
+    </div>
+    <p class="copy">© 2026 by InnoPlot</p>
+  </div>
+</footer>
+
 
 <script>
 // Scroll-driven flip: elements tilt up from the horizontal as they enter the viewport.
@@ -432,6 +526,18 @@ if(matchMedia('(hover:none)').matches){
   const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('flipped',e.isIntersecting)),{rootMargin:'-35% 0px -35% 0px'});
   fcs.forEach(c=>io.observe(c));
 }
+
+// Process section: hover fades to the dark state; on touch devices it does so when scrolled into view.
+const proc=document.getElementById('process');
+if(matchMedia('(hover:none)').matches){
+  new IntersectionObserver(es=>es.forEach(e=>proc.classList.toggle('on',e.isIntersecting)),{rootMargin:'-30% 0px -30% 0px'}).observe(proc);
+}
+// Contact form: front-end only for now.
+document.getElementById('cform').addEventListener('submit',e=>{
+  e.preventDefault();
+  // TODO: send the form data to your backend / email service here.
+  document.getElementById('contact').classList.add('sent');
+});
 </script>
 </body>
 </html>
