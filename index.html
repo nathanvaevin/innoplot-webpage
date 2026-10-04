@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InnoPlot | From Insight to Impact</title>
+<meta name="description" content="InnoPlot drives measurable business transformation for technology-driven organizations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1e4a6b;--navy-deep:#14344c;--blue:#5b9bd5;--blue-soft:#dbe9f5;--mint:#5ed1a0;--gold:#e2b93b;
+  --ink:#1a2530;--muted:#5a6b7a;--bg:#f6fafc;--card:#fff;--line:#dde7ee;--radius:18px;
+  --shadow:0 30px 60px -25px rgba(20,52,76,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--blue)}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;line-height:1.12;letter-spacing:-.01em}
+em{font-style:normal;color:var(--blue)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 .95rem 'Inter',sans-serif;border:0;cursor:pointer;text-decoration:none;padding:15px 30px;border-radius:99px;background:var(--navy);color:#fff;transition:.25s;box-shadow:0 12px 24px -12px var(--navy)}
+.btn:hover{background:var(--blue);transform:translateY(-2px)}
+.btn.mint{background:var(--mint);color:var(--navy-deep);box-shadow:0 12px 24px -12px var(--mint)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.4);box-shadow:none}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+.btn.sm{padding:10px 22px;font-size:.85rem}
+
+/* NAV */
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:40;width:min(1080px,calc(100% - 32px));
+  display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 12px 10px 26px;border-radius:99px;
+  background:rgba(255,255,255,.72);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.6);box-shadow:0 10px 30px -12px rgba(20,52,76,.35)}
+.logo{font-weight:600;font-size:1.15rem;color:var(--navy);text-decoration:none;letter-spacing:-.01em}
+.logo span{color:var(--blue)}
+.nav ul{display:flex;gap:26px;list-style:none}
+.nav ul a{text-decoration:none;font-size:.86rem;color:var(--navy);font-weight:500;position:relative;padding:4px 0}
+.nav ul a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--mint);transition:.25s}
+.nav ul a:hover::after{width:100%}
+.nav-r{display:flex;align-items:center;gap:14px}
+.lang-sw{font-size:.8rem;color:var(--navy);font-weight:500;border:1px solid var(--line);border-radius:99px;padding:7px 14px;background:#fff}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:
+  radial-gradient(900px 500px at 78% 20%,rgba(91,155,213,.45),transparent 60%),
+  radial-gradient(700px 500px at 5% 95%,rgba(94,209,160,.25),transparent 60%),
+  linear-gradient(160deg,#10304a,#1e4a6b 55%,#14344c)}
+.hero .net{position:absolute;inset:0;opacity:.2;background-image:radial-gradient(#fff 1.2px,transparent 1.3px);background-size:42px 42px;mask-image:linear-gradient(115deg,transparent 25%,#000);-webkit-mask-image:linear-gradient(115deg,transparent 25%,#000)}
+.orb{position:absolute;border-radius:50%;background:var(--mint);box-shadow:0 0 40px 8px rgba(94,209,160,.55);animation:float 7s ease-in-out infinite}
+.orb.a{width:16px;height:16px;right:22%;top:30%}
+.orb.b{width:11px;height:11px;right:30%;top:40%;background:var(--blue);box-shadow:0 0 30px 6px rgba(91,155,213,.6);animation-delay:-3s}
+.orb.c{width:8px;height:8px;right:14%;top:52%;background:var(--gold);box-shadow:0 0 26px 6px rgba(226,185,59,.5);animation-delay:-5s}
+@keyframes float{50%{transform:translateY(-22px)}}
+.hero .wrap{position:relative;z-index:1;padding-bottom:110px;padding-top:160px;display:grid;grid-template-columns:1.3fr 1fr;gap:50px;align-items:end;width:100%}
+.hero h1{font-size:clamp(3rem,7vw,6rem);font-weight:300}
+.hero h1 em{display:block;color:var(--blue)}
+.hero h1 small{display:block;font-family:'Inter';font-size:clamp(1.1rem,2vw,1.5rem);font-weight:300;margin-top:16px;color:#e4eef7;letter-spacing:0}
+.hero p{font-size:1.15rem;font-weight:300;color:#dbe7f1;max-width:420px;margin-bottom:28px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* LOGOS */
+.logos{background:#fff;border-bottom:1px solid var(--line);padding:30px 0;overflow:hidden}
+.logos p{text-align:center;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.marquee{display:flex;gap:70px;width:max-content;animation:scroll 32s linear infinite}
+.marquee span{font-weight:600;font-size:1.25rem;color:#9bb0c0;white-space:nowrap;letter-spacing:.02em;transition:.3s}
+.marquee span:hover{color:var(--navy)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* INTRO + MAP */
+.intro{padding:110px 0 40px}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:60px}
+.intro h2{font-size:clamp(2.2rem,4vw,3.4rem);color:var(--navy)}
+.intro .txt p{color:var(--muted);margin-bottom:12px}
+.intro .txt p:first-child{color:var(--ink);font-size:1.15rem;font-family:'Fraunces',serif}
+.expert{display:grid;grid-template-columns:1.5fr 1fr;gap:28px}
+.map{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:grid;place-items:center;box-shadow:var(--shadow)}
+.expert-card{background:var(--navy);color:#fff;border-radius:var(--radius);padding:38px 34px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.expert-card::after{content:"";position:absolute;width:260px;height:260px;right:-100px;top:-100px;background:radial-gradient(circle,rgba(94,209,160,.35),transparent 65%)}
+.expert-card h3{font-size:2rem;margin-bottom:16px}
+.expert-card p{color:#d3e2ee;font-size:.93rem;margin-bottom:14px}
+.expert-card .btn{align-self:flex-start;margin-top:8px}
+
+/* FLIP (scroll-driven) */
+.flip{transform-origin:50% 0;will-change:transform,opacity;transform:perspective(1400px) rotateX(var(--rx,0deg));opacity:var(--op,1)}
+
+/* SERVICES */
+.services{padding:100px 0}
+.sec-head{max-width:680px;margin-bottom:50px}
+.sec-head h2{font-size:clamp(2rem,3.8vw,3.2rem);color:var(--navy);margin:12px 0 14px}
+.sec-head p{color:var(--muted);font-size:1.05rem}
+.svc{display:grid;grid-template-columns:110px 1.2fr 280px;gap:40px;align-items:center;background:linear-gradient(120deg,var(--navy-deep),var(--navy));color:#fff;border-radius:24px;padding:40px 44px;margin-bottom:22px;position:relative;overflow:hidden}
+.svc::before{content:"";position:absolute;right:-80px;top:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(91,155,213,.3),transparent 65%)}
+.svc .num{font-family:'Fraunces',serif;font-size:5.5rem;font-weight:300;color:rgba(255,255,255,.28);line-height:1}
+.svc h3{font-size:2rem}
+.svc h4{font-weight:500;color:var(--blue);font-size:1.1rem;margin:4px 0 14px;font-family:'Inter'}
+.svc blockquote{font-style:italic;font-size:.95rem;color:#e4eef7;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.18)}
+.svc p{font-size:.9rem;color:#cfe0ee;font-weight:300}
+.svc img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px;box-shadow:0 20px 40px -15px rgba(0,0,0,.5);position:relative}
+
+/* STAND FOR */
+.stand{padding:40px 0 100px}
+.stand-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:center}
+.stand h2{font-size:clamp(2.2rem,4.2vw,3.6rem);color:#8a98a5}
+.stand h2 em{color:var(--blue)}
+.stand blockquote{font-family:'Fraunces',serif;font-size:1.45rem;line-height:1.4;color:var(--navy);margin:32px 0 22px;padding-left:22px;border-left:3px solid var(--mint)}
+.sig{font-size:.9rem;color:var(--muted);padding-left:25px}
+.sig strong{color:var(--navy);display:block}
+.portrait{position:relative}
+.portrait::before{content:"";position:absolute;inset:-18px 18px 18px -18px;border-radius:24px;background:linear-gradient(135deg,var(--blue-soft),#dff6ec)}
+.portrait img{position:relative;width:100%;border-radius:20px;box-shadow:var(--shadow)}
+
+/* APART */
+.apart{background:var(--navy);color:#fff;padding:110px 0 120px;position:relative;overflow:hidden}
+.apart::before{content:"";position:absolute;left:50%;top:-200px;width:800px;height:500px;transform:translateX(-50%);background:radial-gradient(circle,rgba(91,155,213,.3),transparent 65%)}
+.apart h2{text-align:center;font-size:clamp(2.2rem,4vw,3.4rem);margin-bottom:60px;position:relative;font-weight:300}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative}
+.stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:36px 30px;backdrop-filter:blur(8px)}
+.stat .big{font-family:'Fraunces',serif;font-size:4.2rem;font-weight:300;line-height:1;background:linear-gradient(120deg,#fff,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
+.stat h3{font-size:1.2rem;font-family:'Inter';font-weight:500;margin-bottom:10px}
+.stat p{font-size:.92rem;color:#cfe0ee;font-weight:300}
+
+/* ENGAGE */
+.engage{padding:110px 0 120px;text-align:center}
+.engage h2{font-size:clamp(2.2rem,4vw,3.4rem);color:var(--navy)}
+.engage .sub{max-width:560px;margin:16px auto 54px;color:var(--muted)}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;text-align:left}
+.pillar{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px 26px;transition:.3s;position:relative;overflow:hidden}
+.pillar::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--c,var(--blue))}
+.pillar:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+.pillar .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--bg);color:var(--c,var(--blue));margin-bottom:20px}
+.pillar .ic svg{width:22px;height:22px}
+.pillar h3{font-size:1.4rem;color:var(--navy)}
+.pillar h4{font:500 .9rem 'Inter';color:var(--c,var(--blue));margin:2px 0 12px}
+.pillar p{font-size:.92rem;color:var(--muted)}
+
+/* DIFFERENTIATED APPROACH */
+.diff{background:linear-gradient(200deg,#7d95a6 0%,#4d6784 38%,#27506d 70%,#1f4a68 100%);color:#fff;position:relative;overflow:clip}
+.diff::before{content:"";position:absolute;left:-200px;bottom:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(150,130,195,.65),transparent 65%);pointer-events:none}
+.diff-intro{height:210vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.diff h2{position:absolute;left:0;right:0;top:50%;text-align:center;font-size:clamp(2.2rem,4.6vw,4rem);font-weight:300;font-family:'Inter',sans-serif;letter-spacing:-.02em;transform:translateY(calc(-50% + var(--hy,0px)));z-index:3;padding:0 20px}
+.diff h2 em{color:#6fa6dc}
+.dot{position:absolute;border-radius:50%;background:rgba(40,70,100,.35);border:1px solid rgba(255,255,255,.08);left:50%;top:50%;z-index:1;opacity:var(--do,1);transform:translate(calc(-50% + var(--dx,0px)),calc(-50% + var(--dy,0px))) scale(var(--ds,1))}
+.dot.big{width:min(36vw,520px);height:min(36vw,520px)}
+.dot.sm{width:min(20vw,290px);height:min(20vw,290px)}
+.dot.arrow{width:110px;height:110px;background:rgba(190,210,225,.55);display:grid;place-items:center;z-index:2;border:0}
+.dot.arrow svg{width:46px;height:46px;color:rgba(255,255,255,.85)}
+.cards{position:relative;z-index:2;padding:30px 0 140px}
+.cards .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:50px 40px;align-items:start}
+.fc{perspective:1600px;height:480px;cursor:pointer;outline:none}
+.fc-in{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.fc:hover .fc-in,.fc.flipped .fc-in,.fc:focus-visible .fc-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.front{display:flex;align-items:center;justify-content:center;gap:16px;padding:0 20px;text-align:center}
+.front h3{font-family:'Inter',sans-serif;font-weight:300;font-size:clamp(1.5rem,2.3vw,2.1rem);line-height:1.2}
+.plus{flex:none;width:44px;height:44px;border-radius:50%;border:2px solid #6fa6dc;color:#6fa6dc;display:grid;place-items:center;font-size:1.6rem;line-height:1;font-weight:300}
+.back{transform:rotateY(180deg);background:#6bdf9a;color:#fff;border-radius:44px 0 44px 0;padding:34px 30px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(0,0,0,.45)}
+.back h3{font-family:'Inter',sans-serif;font-weight:300;font-size:1.7rem;line-height:1.15;margin-bottom:16px}
+.back h4{font-size:.98rem;font-weight:600;margin-top:16px}
+.back p{font-size:.9rem;line-height:1.5}
+.cta-cell{display:grid;place-items:center;height:480px}
+.pill{display:inline-flex;align-items:center;gap:14px;background:#fff;color:var(--ink);text-decoration:none;border-radius:99px;padding:12px 30px 12px 14px;font-size:1.1rem;box-shadow:0 20px 40px -18px rgba(0,0,0,.5);transition:.25s}
+.pill:hover{transform:translateY(-4px);box-shadow:0 26px 44px -16px rgba(0,0,0,.55)}
+.pill i{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--blue);display:grid;place-items:center;color:var(--blue);font-style:normal}
+
+/* PLACEHOLDER for next */
+.next{background:var(--navy-deep);color:#9fb6c9;text-align:center;padding:50px 24px;font-size:.9rem}
+
+@media(max-width:980px){
+  .cards .grid3{grid-template-columns:1fr 1fr}
+  .cta-cell{height:auto;grid-column:1/-1}
+  .nav ul{display:none}
+  .hero .wrap,.intro-grid,.expert,.stand-grid{grid-template-columns:1fr}
+  .svc{grid-template-columns:1fr;gap:20px;padding:30px 26px}
+  .svc .num{font-size:3.5rem}
+  .svc img{max-width:260px}
+  .stats,.pillars{grid-template-columns:1fr 1fr}
+  .portrait{max-width:300px}
+}
+@media(max-width:640px){.cards .grid3{grid-template-columns:1fr}.fc{height:520px}.stats,.pillars{grid-template-columns:1fr}.lang-sw{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.flip{transform:none!important;opacity:1!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="#top">Inno<span>Plot</span></a>
+  <ul>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#">InnoPlot Academy</a></li>
+    <li><a href="#">PeerPlatforms</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="books.html">Books</a></li>
+  </ul>
+  <div class="nav-r"><span class="lang-sw">🇬🇧 EN ▾</span><a class="btn sm" href="#contact">Contact</a></div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="net"></div>
+  <span class="orb a"></span><span class="orb b"></span><span class="orb c"></span>
+  <div class="wrap">
+    <h1>From Insight <em>to Impact</em><small>— And the leadership to sustain it</small></h1>
+    <div>
+      <p>Driving measurable business transformation for technology-driven organizations.</p>
+      <div class="hero-cta"><a class="btn mint" href="#services">Our services</a><a class="btn ghost" href="#expertise">Our expertise</a></div>
+    </div>
+  </div>
+</header>
+
+<section class="logos">
+  <p>Trusted by innovation leaders</p>
+  <div class="marquee">
+    <!-- Text placeholders: replace with the real client logo images -->
+    <span>DSM</span><span>Avebe</span><span>Philips Research</span><span>BILFINGER</span><span>avantium</span><span>Flikweert Vision</span><span>LEGO</span>
+    <span>DSM</span><span>Avebe</span><span>Philips Research</span><span>BILFINGER</span><span>avantium</span><span>Flikweert Vision</span><span>LEGO</span>
+  </div>
+</section>
+
+<main>
+<section class="intro" id="expertise">
+  <div class="wrap">
+    <div class="intro-grid">
+      <h2>Senior Business Expertise <em>Meets Technology</em></h2>
+      <div class="txt">
+        <p>Innovation is advancing faster than most organizations can absorb it.</p>
+        <p>InnoPlot helps convert technological ambition into measurable business impact by embedding senior expertise where clarity, execution, and leadership are required most.</p>
+      </div>
+    </div>
+    <div class="expert">
+      <div class="map"><img src="assets/innovation-map.png" alt="Innovation expertise center map"></div>
+      <div class="expert-card">
+        <h3>Innovation Expertise Center</h3>
+        <p>InnoPlot operates as an innovation expertise network.</p>
+        <p>We connect organizations to niche specialists, scientific partners, and senior leaders who translate complex innovation challenges into structured execution.</p>
+        <p>From strategic analysis and solution design to portfolio management, interim R&amp;D leadership, and full transformation programs, our experts embed where impact is required.</p>
+        <a class="btn mint sm" href="#">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Our Core Services</span>
+      <h2>Different modes of <em>engagement</em></h2>
+      <p>Different modes of engagement depending on your organization’s needs.</p>
+    </div>
+
+    <article class="svc flip">
+      <div class="num">1</div>
+      <div>
+        <h3>Consulting</h3><h4>Strategic Clarity &amp; Roadmaps</h4>
+        <blockquote>"We give you the clarity to make the right innovation bets and the plan to execute them."</blockquote>
+        <p>Through deep, insight-driven analysis, we define the right strategic direction, innovation portfolio, and implementation path. Our work delivers actionable, evidence-based recommendations and a clear roadmap to measurable results, ideal when you face critical innovation challenges, shifting markets, or the need for a future-proof strategy grounded in data and expertise.</p>
+      </div>
+      <img src="assets/consulting.png" alt="Consulting">
+    </article>
+
+    <article class="svc flip">
+      <div class="num">2</div>
+      <div>
+        <h3>Interim Management</h3><h4>Execution Power &amp; Leadership Capacity</h4>
+        <blockquote>"We don’t just advise, we step in, take responsibility, and make change happen."</blockquote>
+        <p>Our senior experts step into your organization to drive innovation initiatives, lead complex transformations, and deliver critical projects to completion. Acting as part of your leadership team, we bring hands-on experience, full accountability, and the capacity to bridge any gap, ideal when change can’t wait for a permanent hire and real-world execution is just as vital as strategy.</p>
+      </div>
+      <img src="assets/interim.png" alt="Interim management">
+    </article>
+
+    <article class="svc flip">
+      <div class="num">3</div>
+      <div>
+        <h3>Coaching</h3><h4>Leadership Growth &amp; Transformation Mindset</h4>
+        <blockquote>"We empower leaders to master complexity, inspire teams, and lead transformation with confidence."</blockquote>
+        <p>Our tailored coaching empowers executives, innovation leaders, and high-potential talent to strengthen decision-making, resilience, and leadership presence. Through practical guidance and mindset development, we help teams embed innovation into their culture and sustain performance well beyond the current challenge.</p>
+      </div>
+      <img src="assets/coaching.png" alt="Coaching">
+    </article>
+
+    <article class="svc flip">
+      <div class="num">4</div>
+      <div>
+        <h3>InnoPlot Academy</h3><h4>Building Innovation Capability</h4>
+        <blockquote>"We equip your people with the methods, tools, and mindset to consistently innovate, adapt, and compete in technology-driven markets."</blockquote>
+        <p>Through tailored training programs, workshops, and masterclasses, we equip teams with the methods, tools, and mindset to lead innovation with confidence. Our academy turns knowledge into practice and enables organizations to embed sustainable innovation, adapt faster, and stay competitive in technology-driven markets.</p>
+      </div>
+      <img src="assets/academy.png" alt="InnoPlot Academy">
+    </article>
+  </div>
+</section>
+
+<section class="stand">
+  <div class="wrap stand-grid">
+    <div>
+      <h2>What We Stand For<br>Clarity, <em>Innovation</em>, Impact</h2>
+      <blockquote>"We help organizations bridge complex innovation challenges and turn paradoxes into progress. Through our four pillars and integrated approach, we uncover the synergies that transform ideas into measurable impact."</blockquote>
+      <div class="sig"><strong>— Koen Klokgieters</strong>CEO and Founder of InnoPlot</div>
+    </div>
+    <div class="portrait"><img src="assets/koen.png" alt="Koen Klokgieters"></div>
+  </div>
+</section>
+
+<section class="apart">
+  <div class="wrap">
+    <h2>What sets <em>InnoPlot</em> apart?</h2>
+    <div class="stats">
+      <div class="stat flip"><div class="big">15+</div><h3>Industry knowledge and experiences</h3><p>We build long-term client relationships with corporate organizations, mid-size companies and start-ups/scale-ups in many different industries. Such as High-Tech, Food &amp; Feed Manufacturing, Agriculture Machine Manufacturing, Telecom, Utilities and many more.</p></div>
+      <div class="stat flip"><div class="big">25+</div><h3>Technology platform expertise</h3><p>We understand state-of-the art technology development in many different areas of mechanical engineering, digital and AI technologies, energy and environmental technologies, food and agriculture technologies.</p></div>
+      <div class="stat flip"><div class="big">10+</div><h3>Business partners</h3><p>We are building an extensive network with our business partners based on niche expertise to deliver our integrated services.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="engage">
+  <div class="wrap">
+    <h2>Different Modes of <em>Engagement</em></h2>
+    <p class="sub">From insight to impact, our structured approach, through our four core pillars, drives lasting transformation tailored to your organization.</p>
+    <div class="pillars">
+      <div class="pillar" style="--c:#5b9bd5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>Insight</h3><h4>&amp; Direction</h4><p>Clear strategic direction and evidence-based roadmaps for innovation initiatives.</p></div>
+      <div class="pillar" style="--c:#2fb98a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Execution</h3><h4>&amp; Leadership</h4><p>Hands-on interim management to drive transformation and deliver results.</p></div>
+      <div class="pillar" style="--c:#d9a81e"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20l6-6 4 4 8-10"/><path d="M15 8h6v6"/></svg></div><h3>Leadership</h3><h4>&amp; Growth Mindset</h4><p>Executive coaching to build resilience and transformation capabilities.</p></div>
+      <div class="pillar" style="--c:#1e4a6b"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 5-9 5-9-5z"/><path d="M7 11v5c0 1.5 2.2 3 5 3s5-1.5 5-3v-5"/></svg></div><h3>Knowledge</h3><h4>&amp; Capabilities</h4><p>Academy programs to embed innovation practices into your organization's DNA.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="diff">
+  <div class="diff-intro" id="diffIntro">
+    <div class="stage">
+      <span class="dot big" id="d1"></span>
+      <span class="dot sm" id="d2"></span>
+      <span class="dot arrow" id="d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      <h2 id="diffTitle">Our Differentiated <em>Approach</em></h2>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="wrap grid3">
+      <div class="fc" tabindex="0"><div class="fc-in">
+        <div class="face front"><h3>Senior Expertise</h3><span class="plus">+</span></div>
+        <div class="face back"><h3>Senior Expertise</h3>
+          <h4>Experienced Professionals</h4><p>Our senior experts bring deep cross-industry knowledge, delivering relevant and actionable insights for executives and business owners.</p>
+          <h4 style="margin-top:28px">Proven Track Record</h4><p>With a strong history of successful engagements, we consistently deliver results aligned with our clients’ strategic objectives.</p></div>
+      </div></div>
+
+      <div class="fc" tabindex="0"><div class="fc-in">
+        <div class="face front"><h3>Integration of Services</h3><span class="plus">+</span></div>
+        <div class="face back"><h3>Integration of Services</h3>
+          <h4>Holistic Support</h4><p>Our consulting, interim management, coaching, and academy services work together to provide an integrated ecosystem from strategy to execution and capability building.</p>
+          <h4>Seamless Transition</h4><p>By combining consulting with interim leadership, we ensure smooth execution, closing leadership gaps and driving initiatives effectively.</p></div>
+      </div></div>
+
+      <div class="fc" tabindex="0"><div class="fc-in">
+        <div class="face front"><h3>Paradox Management</h3><span class="plus">+</span></div>
+        <div class="face back"><h3>Paradox Management</h3>
+          <h4>Understanding Complexity</h4><p>We help businesses navigate inherent paradoxes, safeguarding existing value while fostering innovation without disrupting current operations.</p>
+          <h4>Tailored Solutions</h4><p>We deliver bespoke strategies designed to address each organization’s unique challenges and evolve with changing business environments.</p></div>
+      </div></div>
+
+      <div class="fc" tabindex="0"><div class="fc-in">
+        <div class="face front"><h3>Innovation &amp; Leadership Development</h3><span class="plus">+</span></div>
+        <div class="face back"><h3>Innovation &amp; Leadership Development</h3>
+          <h4>Cultivating an Innovative Mindset</h4><p>We go beyond traditional consulting by fostering a culture of innovation within organizations. Through our academy and coaching, we equip teams with the skills and mindset to thrive in uncertainty.</p>
+          <h4>Leadership Coaching</h4><p>Our coaching empowers leaders to manage complexity, inspire teams, and confidently drive transformation through change.</p></div>
+      </div></div>
+
+      <div class="fc" tabindex="0"><div class="fc-in">
+        <div class="face front"><h3>Engagement &amp; Partnerships</h3><span class="plus">+</span></div>
+        <div class="face back"><h3>Engagement &amp; Partnerships</h3>
+          <!-- middle of this sentence was cut off in the screenshot; please verify -->
+          <h4>Collaborative Approach</h4><p>We see our clients as partners in innovation and growth, ensuring active involvement in key decisions.</p>
+          <h4>Long-Term Partnership</h4><p>We focus on lasting partnerships, recognizing that sustained success requires ongoing support and adaptation.</p></div>
+      </div></div>
+
+      <div class="cta-cell"><a class="pill" href="#contact"><i>↗</i>Start the Conversation</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="next" id="contact">More sections coming… (rest of the homepage)</div>
+
+<script>
+// Scroll-driven flip: elements tilt up from the horizontal as they enter the viewport.
+const flips=[...document.querySelectorAll('.flip')];
+function tick(){
+  const vh=innerHeight;
+  flips.forEach(el=>{
+    const r=el.getBoundingClientRect();
+    // 0 when the top sits at the bottom of the viewport, 1 once it reaches ~72% of the way up
+    const p=Math.min(1,Math.max(0,(vh-r.top)/(vh*.28)));
+    const e=1-Math.pow(1-p,3);
+    el.style.setProperty('--rx',(-80*(1-e)).toFixed(1)+'deg');
+    el.style.setProperty('--op',(.15+.85*e).toFixed(2));
+  });
+}
+addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});
+addEventListener('resize',tick);tick();
+
+// Differentiated Approach intro: circles converge on the arrow, fade out, then the heading drops down onto the cards.
+const intro=document.getElementById('diffIntro'),dTitle=document.getElementById('diffTitle'),
+      d1=document.getElementById('d1'),d2=document.getElementById('d2'),d3=document.getElementById('d3');
+const ease=t=>1-Math.pow(1-t,3), clamp=v=>Math.min(1,Math.max(0,v));
+function diffTick(){
+  const r=intro.getBoundingClientRect(),vh=innerHeight;
+  const p=clamp(-r.top/(r.height-vh));              // 0 → 1 while the stage is pinned
+  const conv=ease(clamp(p/.5));                     // circles gather
+  const drop=ease(clamp((p-.55)/.45));              // heading moves down
+  const w=innerWidth;
+  d1.style.setProperty('--dx',(w*.24*(1-conv)).toFixed(0)+'px');
+  d1.style.setProperty('--dy',(vh*.14*(1-conv)).toFixed(0)+'px');
+  d2.style.setProperty('--dx',(-w*.22*(1-conv)).toFixed(0)+'px');
+  d2.style.setProperty('--dy',(vh*.08*(1-conv)).toFixed(0)+'px');
+  d3.style.setProperty('--dx',(-w*.08*(1-conv)).toFixed(0)+'px');
+  d3.style.setProperty('--dy',(vh*.38*(1-conv)).toFixed(0)+'px');
+  const fade=1-ease(clamp((p-.45)/.3));
+  [d1,d2,d3].forEach(d=>d.style.setProperty('--do',fade.toFixed(2)));
+  d1.style.setProperty('--ds',(1-.35*conv).toFixed(2));d2.style.setProperty('--ds',(1-.35*conv).toFixed(2));
+  dTitle.style.setProperty('--hy',(drop*(vh*.5-70)).toFixed(0)+'px');
+}
+addEventListener('scroll',()=>requestAnimationFrame(diffTick),{passive:true});
+addEventListener('resize',diffTick);diffTick();
+
+// Cards: hover flips on desktop; on touch devices they flip by themselves when scrolled to the middle of the screen.
+const fcs=document.querySelectorAll('.fc');
+if(matchMedia('(hover:none)').matches){
+  const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('flipped',e.isIntersecting)),{rootMargin:'-35% 0px -35% 0px'});
+  fcs.forEach(c=>io.observe(c));
+}
+</script>
+</body>
+</html>

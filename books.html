@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Books & Publications | InnoPlot</title>
+<meta name="description" content="Books and publications by Koen Klokgieters, CEO of InnoPlot: Innovatieparadoxen and Leading Beyond the AI Paradox.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1e4a6b;
+  --navy-deep:#14344c;
+  --blue:#5b9bd5;
+  --blue-soft:#dbe9f5;
+  --mint:#5ed1a0;
+  --gold:#e2b93b;
+  --ink:#1a2530;
+  --muted:#5a6b7a;
+  --bg:#f6fafc;
+  --card:#ffffff;
+  --line:#dde7ee;
+  --radius:18px;
+  --shadow:0 30px 60px -25px rgba(20,52,76,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--blue)}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:400;line-height:1.12;letter-spacing:-.01em}
+h1 em,h2 em{font-style:normal;color:var(--blue)}
+
+/* HERO */
+.hero{position:relative;background:var(--navy);color:#fff;overflow:hidden;padding:110px 0 130px}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(2px)}
+.hero::before{width:620px;height:620px;right:-160px;top:-220px;background:radial-gradient(circle,rgba(91,155,213,.35),transparent 65%)}
+.hero::after{width:480px;height:480px;left:-160px;bottom:-260px;background:radial-gradient(circle,rgba(94,209,160,.22),transparent 65%)}
+.hero .net{position:absolute;inset:0;opacity:.18;background-image:radial-gradient(#fff 1.2px,transparent 1.3px);background-size:38px 38px;mask-image:linear-gradient(120deg,transparent 30%,#000 100%);-webkit-mask-image:linear-gradient(120deg,transparent 30%,#000 100%)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,5.5vw,4.6rem);margin:18px 0 26px}
+.hero p{max-width:520px;color:#dbe7f1;font-size:1.08rem;font-weight:300}
+.hero .eyebrow{color:var(--mint)}
+.hero-covers{position:relative;height:430px}
+.hero-covers img{position:absolute;border-radius:6px;box-shadow:0 40px 70px -20px rgba(0,0,0,.55)}
+.hero-covers .c1{width:56%;left:2%;top:34px;transform:rotate(-6deg)}
+.hero-covers .c2{width:56%;right:0;top:0;transform:rotate(5deg)}
+.scroll-cue{display:inline-flex;align-items:center;gap:10px;margin-top:36px;color:#fff;text-decoration:none;font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:4px}
+.scroll-cue:hover{border-color:var(--mint)}
+
+/* BOOKS */
+.books{padding:40px 0 20px;margin-top:-60px;position:relative;z-index:2}
+.book{display:grid;grid-template-columns:380px 1fr;gap:70px;align-items:center;background:var(--card);border-radius:28px;padding:60px;box-shadow:var(--shadow);margin-bottom:48px;border:1px solid var(--line)}
+.book.reverse{grid-template-columns:1fr 380px}
+.book.reverse .cover{order:2}
+.cover{position:relative;perspective:1200px}
+.cover::before{content:"";position:absolute;inset:8% -6% -6% 6%;border-radius:20px;background:linear-gradient(135deg,var(--blue-soft),#e6f7ef);z-index:0}
+.cover img{position:relative;z-index:1;width:100%;border-radius:4px 8px 8px 4px;box-shadow:-6px 0 0 rgba(0,0,0,.08),0 30px 50px -18px rgba(20,52,76,.55);transition:transform .5s ease}
+.book:hover .cover img{transform:rotateY(-8deg) translateY(-6px)}
+.lang{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:5px 12px;border-radius:99px;background:var(--blue-soft);color:var(--navy);margin-bottom:18px}
+.lang.en{background:#dff6ec;color:#17704e}
+.book h2{font-size:clamp(2rem,3.4vw,2.9rem);color:var(--navy)}
+.book .sub{margin:12px 0 22px;font-size:1.12rem;color:var(--blue);font-weight:500}
+.book p{color:var(--muted);margin-bottom:14px}
+.book p.lead{color:var(--ink)}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 30px}
+.facts span{font-size:.82rem;padding:7px 14px;border:1px solid var(--line);border-radius:99px;color:var(--navy);background:var(--bg)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 .95rem 'Inter',sans-serif;border:0;cursor:pointer;text-decoration:none;padding:15px 30px;border-radius:99px;background:var(--navy);color:#fff;transition:.25s;box-shadow:0 12px 24px -12px var(--navy)}
+.btn:hover{background:var(--blue);transform:translateY(-2px)}
+.btn.mint{background:var(--mint);color:var(--navy-deep);box-shadow:0 12px 24px -12px var(--mint)}
+.btn.mint:hover{background:#7fe0b8}
+.btn svg{width:18px;height:18px}
+.quote{border-left:3px solid var(--mint);padding:4px 0 4px 18px;margin:20px 0;font-family:'Fraunces',serif;font-size:1.25rem;color:var(--navy);line-height:1.4}
+
+/* AUTHOR */
+.author{padding:70px 0 30px}
+.author-card{display:grid;grid-template-columns:1fr 1.4fr;gap:50px;align-items:center}
+.author h2{font-size:clamp(1.9rem,3vw,2.6rem);color:var(--navy)}
+.author-card div:last-child{background:#eef4f8;border-radius:var(--radius);padding:34px 36px;color:var(--muted)}
+
+/* ARTICLES */
+.articles{padding:70px 0 110px}
+.sec-head{max-width:640px;margin-bottom:46px}
+.sec-head h2{font-size:clamp(2rem,3.6vw,3rem);color:var(--navy);margin:12px 0 16px}
+.sec-head p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.art{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:6px 14px 14px 6px;padding:30px 28px;display:flex;flex-direction:column;transition:.3s}
+.art:nth-child(3n+2){border-left-color:var(--mint)}
+.art:nth-child(3n+3){border-left-color:var(--gold)}
+.art:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.tag{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between}
+.art h3{font-size:1.35rem;color:var(--navy);margin-bottom:12px}
+.art p{color:var(--muted);font-size:.95rem;margin-bottom:24px;flex:1}
+.link{background:none;border:0;cursor:pointer;font:500 .92rem 'Inter',sans-serif;color:var(--navy);display:inline-flex;gap:8px;align-items:center;padding:0;border-bottom:1px solid var(--blue);align-self:flex-start;padding-bottom:3px}
+.link:hover{color:var(--blue)}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(14,34,50,.65);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.modal.open{display:flex;animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+.dialog{background:#fff;border-radius:24px;max-width:480px;width:100%;padding:44px 40px;position:relative;box-shadow:0 40px 80px -20px rgba(0,0,0,.5)}
+.dialog h3{font-size:1.7rem;color:var(--navy);margin:10px 0 8px}
+.dialog p{color:var(--muted);font-size:.95rem;margin-bottom:22px}
+.dialog .doc{font-weight:500;color:var(--navy)}
+.close{position:absolute;top:16px;right:18px;background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-size:.82rem;font-weight:500;color:var(--navy)}
+.field input{font:inherit;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.field input:focus{outline:2px solid var(--blue);border-color:transparent;background:#fff}
+.consent{display:flex;gap:10px;font-size:.8rem;color:var(--muted);margin-bottom:22px;align-items:flex-start}
+.consent input{margin-top:4px;accent-color:var(--navy)}
+.dialog .btn{width:100%;justify-content:center}
+.ok{display:none;text-align:center;padding:10px 0}
+.ok .tick{width:60px;height:60px;border-radius:50%;background:#dff6ec;color:#17704e;display:grid;place-items:center;margin:0 auto 18px;font-size:1.8rem}
+.dialog.sent form,.dialog.sent .intro{display:none}
+.dialog.sent .ok{display:block}
+
+/* FOOTER STRIP */
+.strip{background:var(--navy);color:#cfe0ee;text-align:center;padding:34px 24px;font-size:.88rem}
+
+.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,40px);background:var(--navy-deep);color:#fff;padding:14px 24px;border-radius:99px;font-size:.9rem;opacity:0;pointer-events:none;transition:.35s;z-index:60}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:980px){
+  .hero .wrap,.author-card{grid-template-columns:1fr}
+  .hero-covers{height:380px;max-width:460px;margin:0 auto;width:100%}
+  .book,.book.reverse{grid-template-columns:1fr;padding:34px 26px;gap:40px}
+  .book.reverse .cover{order:0}
+  .cover{max-width:300px;margin:0 auto;width:100%}
+  .grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .hero{padding:80px 0 110px}
+  .grid{grid-template-columns:1fr}
+  .dialog{padding:36px 24px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="net"></div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Books &amp; Publications</span>
+      <h1>Ideas that move <em>innovation</em> forward</h1>
+      <p>Koen Klokgieters, CEO of InnoPlot, has written and published two books on the paradoxes of innovation and the leadership choices of the AI era.</p>
+      <a class="scroll-cue" href="#books">Explore the books
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14m0 0l-6-6m6 6l6-6"/></svg>
+      </a>
+    </div>
+    <div class="hero-covers" aria-hidden="true">
+      <img class="c1" src="assets/innovatieparadoxen.png" alt="">
+      <img class="c2" src="assets/leading-beyond-the-ai-paradox.jpg" alt="">
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="books wrap" id="books">
+
+  <article class="book">
+    <div class="cover">
+      <img src="assets/innovatieparadoxen.png" alt="Cover of Innovatieparadoxen by Koen Klokgieters">
+    </div>
+    <div>
+      <span class="lang">Nederlands</span>
+      <h2>Innovatieparadoxen</h2>
+      <p class="sub">Innovatiesynthese als een oplossing voor complexe innovatievraagstukken</p>
+      <p class="lead">Waarom is het voor een organisatie zo moeilijk om een innovatie succesvol door te voeren? Organisaties zien zich geconfronteerd met steeds complexere innovatievraagstukken waarvoor geen eenduidige oplossing voorhanden lijkt. Koen Klokgieters vertaalt deze complexe vraagstukken naar twaalf innovatieparadoxen.</p>
+      <p>Bovendien laat hij aan de hand van een aantal aansprekende praktijkcases zien hoe bedrijven deze paradoxen hebben samengebracht en een effectieve oplossing hebben gevonden voor hun innovatievraagstuk. Het voorwoord is geschreven door Prof. Dr. Ron Meyer.</p>
+      <div class="facts"><span>12 innovatieparadoxen</span><span>Praktijkcases</span><span>Voorwoord Prof. Dr. Ron Meyer</span></div>
+      <button class="btn" type="button" data-buy="Innovatieparadoxen">Buy now
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+      </button>
+    </div>
+  </article>
+
+  <article class="book reverse">
+    <div class="cover">
+      <img src="assets/leading-beyond-the-ai-paradox.jpg" alt="Cover of Leading Beyond the AI Paradox by Koen Klokgieters">
+    </div>
+    <div>
+      <span class="lang en">English</span>
+      <h2>Leading Beyond the AI Paradox</h2>
+      <p class="sub">Building the AI-Powered Organisation</p>
+      <p class="lead">Artificial Intelligence is advancing faster than organisations can absorb it. For leaders, the challenge is no longer whether to respond, but how to make the right choices while technology, markets and organisations are changing at the same time.</p>
+      <p>Move too fast, and you risk losing control. Move too slowly, and the competitive landscape may change around you. Automate or augment? Build or buy? Delegate decisions to intelligent systems or keep humans in control?</p>
+      <p>Leading Beyond the AI Paradox explores how AI is reshaping competitive advantage, organisational capabilities, structures, decision-making and leadership itself. Rather than offering another blueprint for AI transformation, it provides frameworks, cases and questions that help leaders recognise the choices beneath the technological excitement and develop the judgement to make them.</p>
+      <div class="quote">AI will continue to accelerate. Fear should not determine the direction.</div>
+      <button class="btn" type="button" data-buy="Leading Beyond the AI Paradox">Buy now
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+      </button>
+    </div>
+  </article>
+</section>
+
+<section class="author wrap">
+  <div class="author-card">
+    <div>
+      <span class="eyebrow">The author</span>
+      <h2>Koen Klokgieters</h2>
+    </div>
+    <div>CEO of InnoPlot, a structured network of specialists, scientific institutions and strategic partners deployed where complex innovation challenges require them. His books and articles translate that practice into frameworks leaders can use.</div>
+  </div>
+</section>
+
+<section class="articles wrap" id="articles">
+  <div class="sec-head">
+    <span class="eyebrow">Articles &amp; insights</span>
+    <h2>Read more from <em>Koen</em></h2>
+    <p>Koen regularly publishes articles and insights on innovation, strategy and AI. Leave your email address and we'll send the PDF straight to your inbox.</p>
+  </div>
+
+  <div class="grid">
+    <!-- Replace titles, descriptions and file names with the real publications -->
+    <article class="art">
+      <div class="tag"><span>Article</span><span>PDF</span></div>
+      <h3>Article title one</h3>
+      <p>A short description of what this article covers and why it matters for innovation leaders.</p>
+      <button class="link" type="button" data-doc="Article title one">Get the PDF →</button>
+    </article>
+    <article class="art">
+      <div class="tag"><span>Article</span><span>PDF</span></div>
+      <h3>Article title two</h3>
+      <p>A short description of what this article covers and why it matters for innovation leaders.</p>
+      <button class="link" type="button" data-doc="Article title two">Get the PDF →</button>
+    </article>
+    <article class="art">
+      <div class="tag"><span>Whitepaper</span><span>PDF</span></div>
+      <h3>Whitepaper title</h3>
+      <p>A short description of what this publication covers and what readers will take away from it.</p>
+      <button class="link" type="button" data-doc="Whitepaper title">Get the PDF →</button>
+    </article>
+  </div>
+</section>
+</main>
+
+<div class="strip">© InnoPlot · Books &amp; Publications</div>
+
+<!-- Download modal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <div class="dialog" id="dialog">
+    <button class="close" type="button" aria-label="Close" id="close">×</button>
+    <div class="intro">
+      <span class="eyebrow">Free download</span>
+      <h3 id="mtitle">Get the PDF</h3>
+      <p>Enter your email address and we'll send <span class="doc" id="docname"></span> to your inbox.</p>
+    </div>
+    <form id="form">
+      <div class="field"><label for="email">Email address</label>
+        <input id="email" type="email" required placeholder="you@company.com" autocomplete="email"></div>
+      <label class="consent"><input type="checkbox" required> I agree that InnoPlot may email me this document.</label>
+      <button class="btn mint" type="submit">Send me the PDF</button>
+    </form>
+    <div class="ok">
+      <div class="tick">✓</div>
+      <h3>Check your inbox</h3>
+      <p>Your PDF is on its way to <strong id="sentto"></strong>.</p>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const modal=document.getElementById('modal'),dialog=document.getElementById('dialog'),
+      form=document.getElementById('form'),toast=document.getElementById('toast');
+let current='';
+
+function openModal(name){
+  current=name;
+  document.getElementById('docname').textContent='“'+name+'”';
+  dialog.classList.remove('sent');form.reset();
+  modal.classList.add('open');
+  setTimeout(()=>document.getElementById('email').focus(),50);
+}
+function closeModal(){modal.classList.remove('open')}
+
+document.querySelectorAll('[data-doc]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.doc)));
+document.getElementById('close').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const email=document.getElementById('email').value;
+  // TODO: send {email, document: current} to your backend / email service here.
+  document.getElementById('sentto').textContent=email;
+  dialog.classList.add('sent');
+});
+
+// Buy buttons: no link yet. Set data-href on a button later to enable.
+document.querySelectorAll('[data-buy]').forEach(b=>b.addEventListener('click',()=>{
+  if(b.dataset.href){window.open(b.dataset.href,'_blank','noopener');return}
+  toast.textContent='Purchase link for “'+b.dataset.buy+'” coming soon';
+  toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2600);
+}));
+</script>
+</body>
+</html>
