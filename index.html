@@ -127,15 +127,18 @@ em{font-style:normal;color:var(--blue)}
 .engage{padding:110px 0 120px;text-align:center}
 .engage h2{font-size:clamp(2.2rem,4vw,3.4rem);color:var(--navy)}
 .engage .sub{max-width:560px;margin:16px auto 54px;color:var(--muted)}
-.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;text-align:left}
-.pillar{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px 26px;transition:.3s;position:relative;overflow:hidden}
-.pillar::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--c,var(--blue))}
-.pillar:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
-.pillar .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--bg);color:var(--c,var(--blue));margin-bottom:20px}
-.pillar .ic svg{width:22px;height:22px}
-.pillar h3{font-size:1.4rem;color:var(--navy)}
-.pillar h4{font:500 .9rem 'Inter';color:var(--c,var(--blue));margin:2px 0 12px}
-.pillar p{font-size:.92rem;color:var(--muted)}
+.pillars{display:block;text-align:left;max-width:940px;margin:0 auto;counter-reset:pl;padding-bottom:40px}
+.pillar{counter-increment:pl;position:sticky;top:calc(110px + var(--i,0) * 26px);margin-bottom:60px;min-height:300px;
+  display:grid;grid-template-columns:90px 1fr 1.15fr;grid-template-areas:"ic h3 p" "ic h4 p";grid-template-rows:auto 1fr;column-gap:40px;align-items:start;
+  background:#fff;border:1px solid var(--line);border-radius:28px;padding:44px 48px;overflow:hidden;transform-origin:50% 0;will-change:transform;
+  box-shadow:0 -14px 40px -22px rgba(20,52,76,.35),0 30px 60px -30px rgba(20,52,76,.35)}
+.pillar::before{content:"";position:absolute;left:0;top:0;height:6px;width:100%;background:var(--c,var(--blue))}
+.pillar::after{content:"0" counter(pl);position:absolute;right:40px;bottom:14px;font-family:'Fraunces',serif;font-size:7rem;line-height:1;color:var(--c,var(--blue));opacity:.12}
+.pillar .ic{grid-area:ic;width:70px;height:70px;border-radius:14px;display:grid;place-items:center;background:var(--bg);color:var(--c,var(--blue));margin-bottom:20px}
+.pillar .ic svg{width:30px;height:30px}
+.pillar h3{grid-area:h3;font-size:2.3rem;color:var(--navy);align-self:end}
+.pillar h4{grid-area:h4;font:500 1.05rem 'Inter';color:var(--c,var(--blue));margin:6px 0 0}
+.pillar p{grid-area:p;font-size:1.05rem;color:var(--muted);align-self:center;position:relative;z-index:1}
 
 /* DIFFERENTIATED APPROACH */
 .diff{background:linear-gradient(200deg,#7d95a6 0%,#4d6784 38%,#27506d 70%,#1f4a68 100%);color:#fff;position:relative;overflow:clip}
@@ -224,11 +227,13 @@ em{font-style:normal;color:var(--blue)}
   .svc{grid-template-columns:1fr;gap:20px;padding:30px 26px}
   .svc .num{font-size:3.5rem}
   .svc img{max-width:260px}
-  .stats,.pillars{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .pillar{grid-template-columns:70px 1fr;grid-template-areas:"ic h3" "ic h4" "p p";padding:34px 28px;row-gap:6px;min-height:0}
+  .pillar p{margin-top:14px}.pillar h3{font-size:1.9rem}
   .portrait{max-width:300px}
 }
 @media(max-width:980px){.foot-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.foot-grid{grid-template-columns:1fr}.cards .grid3{grid-template-columns:1fr}.fc{height:520px}.stats,.pillars{grid-template-columns:1fr}.lang-sw{display:none}}
+@media(max-width:640px){.foot-grid{grid-template-columns:1fr}.cards .grid3{grid-template-columns:1fr}.fc{height:520px}.stats{grid-template-columns:1fr}.lang-sw{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.flip{transform:none!important;opacity:1!important}}
 </style>
 </head>
@@ -368,10 +373,10 @@ em{font-style:normal;color:var(--blue)}
     <h2>Different Modes of <em>Engagement</em></h2>
     <p class="sub">From insight to impact, our structured approach, through our four core pillars, drives lasting transformation tailored to your organization.</p>
     <div class="pillars">
-      <div class="pillar" style="--c:#5b9bd5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>Insight</h3><h4>&amp; Direction</h4><p>Clear strategic direction and evidence-based roadmaps for innovation initiatives.</p></div>
-      <div class="pillar" style="--c:#2fb98a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Execution</h3><h4>&amp; Leadership</h4><p>Hands-on interim management to drive transformation and deliver results.</p></div>
-      <div class="pillar" style="--c:#d9a81e"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20l6-6 4 4 8-10"/><path d="M15 8h6v6"/></svg></div><h3>Leadership</h3><h4>&amp; Growth Mindset</h4><p>Executive coaching to build resilience and transformation capabilities.</p></div>
-      <div class="pillar" style="--c:#1e4a6b"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 5-9 5-9-5z"/><path d="M7 11v5c0 1.5 2.2 3 5 3s5-1.5 5-3v-5"/></svg></div><h3>Knowledge</h3><h4>&amp; Capabilities</h4><p>Academy programs to embed innovation practices into your organization's DNA.</p></div>
+      <div class="pillar" style="--i:0;--c:#5b9bd5"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>Insight</h3><h4>&amp; Direction</h4><p>Clear strategic direction and evidence-based roadmaps for innovation initiatives.</p></div>
+      <div class="pillar" style="--i:1;--c:#2fb98a"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Execution</h3><h4>&amp; Leadership</h4><p>Hands-on interim management to drive transformation and deliver results.</p></div>
+      <div class="pillar" style="--i:2;--c:#d9a81e"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20l6-6 4 4 8-10"/><path d="M15 8h6v6"/></svg></div><h3>Leadership</h3><h4>&amp; Growth Mindset</h4><p>Executive coaching to build resilience and transformation capabilities.</p></div>
+      <div class="pillar" style="--i:3;--c:#1e4a6b"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 5-9 5-9-5z"/><path d="M7 11v5c0 1.5 2.2 3 5 3s5-1.5 5-3v-5"/></svg></div><h3>Knowledge</h3><h4>&amp; Capabilities</h4><p>Academy programs to embed innovation practices into your organization's DNA.</p></div>
     </div>
   </div>
 </section>
@@ -519,6 +524,21 @@ function diffTick(){
 }
 addEventListener('scroll',()=>requestAnimationFrame(diffTick),{passive:true});
 addEventListener('resize',diffTick);diffTick();
+
+// Engagement cards: each card slides over the previous one, which shrinks and dims slightly as it gets covered.
+const pcs=[...document.querySelectorAll('.pillar')];
+function stackTick(){
+  pcs.forEach((c,i)=>{
+    const n=pcs[i+1];
+    if(!n){return}
+    const gap=n.getBoundingClientRect().top-c.getBoundingClientRect().top; // shrinks toward the sticky offset as n covers c
+    const p=Math.min(1,Math.max(0,1-(gap-26)/(c.offsetHeight)));
+    c.style.transform='scale('+(1-.05*p).toFixed(3)+')';
+    c.style.filter='brightness('+(1-.12*p).toFixed(3)+')';
+  });
+}
+addEventListener('scroll',()=>requestAnimationFrame(stackTick),{passive:true});
+addEventListener('resize',stackTick);stackTick();
 
 // Cards: hover flips on desktop; on touch devices they flip by themselves when scrolled to the middle of the screen.
 const fcs=document.querySelectorAll('.fc');
