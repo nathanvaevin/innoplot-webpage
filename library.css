@@ -18,9 +18,14 @@ h1 em,h2 em{font-style:normal;color:var(--blue)}
   display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 12px 10px 26px;border-radius:99px;
   background:rgba(255,255,255,.72);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);
   border:1px solid rgba(255,255,255,.6);box-shadow:0 10px 30px -12px rgba(20,52,76,.35)}
-.logo{font-weight:600;font-size:1.1rem;color:var(--navy);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.logo{display:flex;align-items:center;font-weight:600;font-size:1.1rem;color:var(--navy);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
 .logo span{color:var(--blue)}
 .logo small{font-weight:400;color:var(--muted);margin-left:8px;padding-left:10px;border-left:1px solid var(--line);font-size:.95rem}
+.logo img{height:24px;width:auto;display:block}
+
+/* FOOTER MARK */
+.foot-mark{display:flex;justify-content:center;padding:70px 24px 46px}
+.foot-mark img{height:92px;width:auto;opacity:.92}
 .nav ul{display:flex;gap:6px;list-style:none}
 .nav ul a{display:block;text-decoration:none;font-size:.88rem;color:var(--navy);font-weight:500;padding:10px 18px;border-radius:99px;transition:.25s;white-space:nowrap}
 .nav ul a:hover{background:var(--blue-soft)}
