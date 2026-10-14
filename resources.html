@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Downloadable Resources | InnoPlot Library</title>
+<meta name="description" content="Free articles, whitepapers and frameworks by Koen Klokgieters and InnoPlot. Leave your email address and receive the PDF in your inbox.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="library.css">
+<style>
+.hero{padding-bottom:150px}
+.how{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.how span{display:inline-flex;align-items:center;gap:10px;font-size:.88rem;color:#dbe7f1;padding:9px 16px;border:1px solid rgba(255,255,255,.2);border-radius:99px;background:rgba(255,255,255,.05)}
+.how b{width:22px;height:22px;border-radius:50%;background:var(--mint);color:var(--navy-deep);display:grid;place-items:center;font-size:.75rem}
+
+.list{position:relative;z-index:2;margin-top:-70px;padding-bottom:110px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:40px 44px 50px}
+.bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-bottom:34px}
+.bar h2{font-size:clamp(1.6rem,2.6vw,2.1rem);color:var(--navy)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 .85rem 'Inter',sans-serif;padding:9px 18px;border-radius:99px;border:1px solid var(--line);background:var(--bg);color:var(--navy);cursor:pointer;transition:.2s}
+.chip:hover{border-color:var(--blue)}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.art[hidden]{display:none}
+
+.back{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;margin-top:40px;padding:30px 36px;border-radius:22px;background:#eef4f8}
+.back p{color:var(--navy);font-family:'Fraunces',serif;font-size:1.3rem}
+@media(max-width:640px){.panel{padding:28px 20px 34px}.back{padding:26px 22px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="index.html">Inno<span>Plot</span><small>Library</small></a>
+  <ul>
+    <li><a href="index.html">Books</a></li>
+    <li><a href="resources.html" aria-current="page">Resources</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="net"></div>
+  <div class="wrap">
+    <span class="eyebrow">The InnoPlot Library</span>
+    <h1>Downloadable <em>resources</em></h1>
+    <p>Articles, whitepapers and frameworks by Koen Klokgieters and the InnoPlot network on innovation, strategy and AI. Free to download.</p>
+    <div class="how">
+      <span><b>1</b>Choose a resource</span>
+      <span><b>2</b>Leave your email address</span>
+      <span><b>3</b>Receive the PDF in your inbox</span>
+    </div>
+  </div>
+</header>
+
+<main class="list wrap">
+  <div class="panel">
+    <div class="bar">
+      <h2>All resources</h2>
+      <div class="chips" role="group" aria-label="Filter resources">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="article" aria-pressed="false">Articles</button>
+        <button class="chip" type="button" data-filter="whitepaper" aria-pressed="false">Whitepapers</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Placeholders: replace titles, descriptions and types with the real publications -->
+      <article class="art" data-type="article">
+        <div class="tag"><span>Article</span><span>PDF</span></div>
+        <h3>Article title one</h3>
+        <p>A short description of what this article covers and why it matters for innovation leaders.</p>
+        <button class="link" type="button" data-doc="Article title one">Get the PDF →</button>
+      </article>
+      <article class="art c2" data-type="article">
+        <div class="tag"><span>Article</span><span>PDF</span></div>
+        <h3>Article title two</h3>
+        <p>A short description of what this article covers and why it matters for innovation leaders.</p>
+        <button class="link" type="button" data-doc="Article title two">Get the PDF →</button>
+      </article>
+      <article class="art c3" data-type="whitepaper">
+        <div class="tag"><span>Whitepaper</span><span>PDF</span></div>
+        <h3>Whitepaper title one</h3>
+        <p>A short description of what this publication covers and what readers will take away from it.</p>
+        <button class="link" type="button" data-doc="Whitepaper title one">Get the PDF →</button>
+      </article>
+      <article class="art" data-type="article">
+        <div class="tag"><span>Article</span><span>PDF</span></div>
+        <h3>Article title three</h3>
+        <p>A short description of what this article covers and why it matters for innovation leaders.</p>
+        <button class="link" type="button" data-doc="Article title three">Get the PDF →</button>
+      </article>
+      <article class="art c2" data-type="whitepaper">
+        <div class="tag"><span>Whitepaper</span><span>PDF</span></div>
+        <h3>Whitepaper title two</h3>
+        <p>A short description of what this publication covers and what readers will take away from it.</p>
+        <button class="link" type="button" data-doc="Whitepaper title two">Get the PDF →</button>
+      </article>
+      <article class="art c3" data-type="article">
+        <div class="tag"><span>Article</span><span>PDF</span></div>
+        <h3>Article title four</h3>
+        <p>A short description of what this article covers and why it matters for innovation leaders.</p>
+        <button class="link" type="button" data-doc="Article title four">Get the PDF →</button>
+      </article>
+    </div>
+
+    <div class="back">
+      <p>Looking for Koen’s books?</p>
+      <a class="btn" href="index.html">Go to the books
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<div class="strip">© InnoPlot · The InnoPlot Library</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <div class="dialog" id="dialog">
+    <button class="close" type="button" aria-label="Close" id="close">×</button>
+    <div class="intro">
+      <span class="eyebrow">Free download</span>
+      <h3 id="mtitle">Get the PDF</h3>
+      <p>Enter your email address and we'll send <span class="doc" id="docname"></span> to your inbox.</p>
+    </div>
+    <form id="form">
+      <div class="field"><label for="email">Email address</label>
+        <input id="email" type="email" required placeholder="you@company.com" autocomplete="email"></div>
+      <label class="consent"><input type="checkbox" required> I agree that InnoPlot may email me this document.</label>
+      <button class="btn mint" type="submit">Send me the PDF</button>
+    </form>
+    <div class="ok">
+      <div class="tick">✓</div>
+      <h3>Check your inbox</h3>
+      <p>Your PDF is on its way to <strong id="sentto"></strong>.</p>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="library.js"></script>
+</body>
+</html>
