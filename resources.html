@@ -60,48 +60,35 @@
       <h2>All resources</h2>
       <div class="chips" role="group" aria-label="Filter resources">
         <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
-        <button class="chip" type="button" data-filter="article" aria-pressed="false">Articles</button>
         <button class="chip" type="button" data-filter="whitepaper" aria-pressed="false">Whitepapers</button>
+        <button class="chip" type="button" data-filter="article" aria-pressed="false">Articles</button>
       </div>
     </div>
 
     <div class="grid">
-      <!-- Placeholders: replace titles, descriptions and types with the real publications -->
-      <article class="art" data-type="article">
-        <div class="tag"><span>Article</span><span>PDF</span></div>
-        <h3>Article title one</h3>
-        <p>A short description of what this article covers and why it matters for innovation leaders.</p>
-        <button class="link" type="button" data-doc="Article title one">Get the PDF →</button>
-      </article>
-      <article class="art c2" data-type="article">
-        <div class="tag"><span>Article</span><span>PDF</span></div>
-        <h3>Article title two</h3>
-        <p>A short description of what this article covers and why it matters for innovation leaders.</p>
-        <button class="link" type="button" data-doc="Article title two">Get the PDF →</button>
-      </article>
-      <article class="art c3" data-type="whitepaper">
-        <div class="tag"><span>Whitepaper</span><span>PDF</span></div>
-        <h3>Whitepaper title one</h3>
-        <p>A short description of what this publication covers and what readers will take away from it.</p>
-        <button class="link" type="button" data-doc="Whitepaper title one">Get the PDF →</button>
-      </article>
-      <article class="art" data-type="article">
-        <div class="tag"><span>Article</span><span>PDF</span></div>
-        <h3>Article title three</h3>
-        <p>A short description of what this article covers and why it matters for innovation leaders.</p>
-        <button class="link" type="button" data-doc="Article title three">Get the PDF →</button>
+      <article class="art" data-type="whitepaper">
+        <div class="tag"><span>Whitepaper 01</span><span>PDF</span></div>
+        <h3>Managing Innovation as a Strategic Capability</h3>
+        <p>Why competitive advantage depends on more than technology and new ideas — and which technological and commercial capabilities leaders must combine to create tomorrow's value.</p>
+        <button class="link" type="button" data-doc="Managing Innovation as a Strategic Capability" data-file="assets/whitepapers/InnoPlot_Whitepaper_01_Managing_Innovation.pdf">Get the PDF →</button>
       </article>
       <article class="art c2" data-type="whitepaper">
-        <div class="tag"><span>Whitepaper</span><span>PDF</span></div>
-        <h3>Whitepaper title two</h3>
-        <p>A short description of what this publication covers and what readers will take away from it.</p>
-        <button class="link" type="button" data-doc="Whitepaper title two">Get the PDF →</button>
+        <div class="tag"><span>Whitepaper 02</span><span>PDF</span></div>
+        <h3>Leading Innovation in Complexity</h3>
+        <p>Why strategy, structure and culture must evolve together — and how leaders can recognise complexity, reconcile different perspectives and navigate it without losing direction.</p>
+        <button class="link" type="button" data-doc="Leading Innovation in Complexity" data-file="assets/whitepapers/InnoPlot_Whitepaper_02_Leading_Innovation_in_Complexity.pdf">Get the PDF →</button>
       </article>
-      <article class="art c3" data-type="article">
-        <div class="tag"><span>Article</span><span>PDF</span></div>
-        <h3>Article title four</h3>
-        <p>A short description of what this article covers and why it matters for innovation leaders.</p>
-        <button class="link" type="button" data-doc="Article title four">Get the PDF →</button>
+      <article class="art c3" data-type="whitepaper">
+        <div class="tag"><span>Whitepaper 03</span><span>PDF</span></div>
+        <h3>Leading Through Innovation Paradoxes</h3>
+        <p>Why the best strategic choices often lie beyond either-or thinking, and how the twelve innovation paradoxes help leaders turn competing perspectives into better decisions.</p>
+        <button class="link" type="button" data-doc="Leading Through Innovation Paradoxes" data-file="assets/whitepapers/InnoPlot_Whitepaper_03_Leading_Through_Innovation_Paradoxes.pdf">Get the PDF →</button>
+      </article>
+      <article class="art" data-type="whitepaper">
+        <div class="tag"><span>Whitepaper 04</span><span>PDF</span></div>
+        <h3>Building the Capability for Innovation Synthesis</h3>
+        <p>Why complex innovation requires more than analysis, control and consensus — introducing the Innovation Synthesis Maturity Model for developing that capability.</p>
+        <button class="link" type="button" data-doc="Building the Capability for Innovation Synthesis" data-file="assets/whitepapers/InnoPlot_Whitepaper_04_Building_the_Capability_for_Innovation_Synthesis.pdf">Get the PDF →</button>
       </article>
     </div>
 
@@ -123,7 +110,7 @@
     <div class="intro">
       <span class="eyebrow">Free download</span>
       <h3 id="mtitle">Get the PDF</h3>
-      <p>Enter your email address and we'll send <span class="doc" id="docname"></span> to your inbox.</p>
+      <p>Enter your email address to unlock <span class="doc" id="docname"></span>. Your download will start right away.</p>
     </div>
     <form id="form">
       <div class="field"><label for="email">Email address</label>
@@ -133,8 +120,8 @@
     </form>
     <div class="ok">
       <div class="tick">✓</div>
-      <h3>Check your inbox</h3>
-      <p>Your PDF is on its way to <strong id="sentto"></strong>.</p>
+      <h3>You're all set</h3>
+      <p>Your download has started. We've saved <strong id="sentto"></strong> so we can let you know about new resources.</p>
     </div>
   </div>
 </div>

@@ -1,10 +1,10 @@
 // InnoPlot Library: email-gated PDF downloads and placeholder buy buttons.
 const modal=document.getElementById('modal'),dialog=document.getElementById('dialog'),
       form=document.getElementById('form'),toast=document.getElementById('toast');
-let current='';
+let current='',currentFile='';
 
-function openModal(name){
-  current=name;
+function openModal(name,file){
+  current=name;currentFile=file||'';
   document.getElementById('docname').textContent='“'+name+'”';
   dialog.classList.remove('sent');form.reset();
   modal.classList.add('open');
@@ -12,7 +12,7 @@ function openModal(name){
 }
 function closeModal(){modal.classList.remove('open')}
 
-document.querySelectorAll('[data-doc]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.doc)));
+document.querySelectorAll('[data-doc]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.doc,b.dataset.file)));
 document.getElementById('close').addEventListener('click',closeModal);
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
@@ -20,9 +20,14 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 form.addEventListener('submit',e=>{
   e.preventDefault();
   const email=document.getElementById('email').value;
-  // TODO: send {email, document: current} to your backend / email service here.
+  // TODO: also send {email, document: current} to a lead-storage backend here (see library note).
   document.getElementById('sentto').textContent=email;
   dialog.classList.add('sent');
+  if(currentFile){
+    const a=document.createElement('a');
+    a.href=currentFile;a.download='';
+    document.body.appendChild(a);a.click();a.remove();
+  }
 });
 
 // Buy buttons: no link yet. Set data-href on a button later to enable.
