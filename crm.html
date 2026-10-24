@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>CRM | InnoPlot Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="library.css">
+<style>
+body{background:var(--bg);min-height:100vh}
+[hidden]{display:none!important}
+
+/* AUTH SCREENS */
+.auth{min-height:100vh;display:grid;place-items:center;padding:24px;
+  background:radial-gradient(700px 420px at 85% 0%,rgba(91,155,213,.18),transparent 60%),radial-gradient(600px 420px at 0% 100%,rgba(94,209,160,.14),transparent 60%),var(--bg)}
+.auth-card{width:100%;max-width:420px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:42px 38px;box-shadow:var(--shadow)}
+.auth-card img{height:30px;margin-bottom:28px}
+.auth-card h1{font-size:1.9rem;color:var(--navy);margin-bottom:6px}
+.auth-card>p{color:var(--muted);font-size:.93rem;margin-bottom:26px}
+.auth-card .btn{width:100%;justify-content:center;margin-top:6px}
+.auth-card .alt{display:block;margin:18px auto 0;background:none;border:0;color:var(--muted);font:500 .85rem 'Inter',sans-serif;cursor:pointer;text-decoration:underline}
+.msg{font-size:.86rem;margin-top:16px;padding:10px 14px;border-radius:10px}
+.msg.err{background:#fdecec;color:#a12828}
+.msg.ok{background:#dff6ec;color:#17704e}
+.field textarea,.field select{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);resize:vertical}
+.field textarea:focus,.field select:focus{outline:2px solid var(--blue);border-color:transparent;background:#fff}
+code{font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+
+/* APP SHELL */
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.top-l{display:flex;align-items:center;gap:14px}
+.top-l img{height:24px}
+.badge{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--navy);background:var(--blue-soft);padding:5px 10px;border-radius:99px}
+.top-r{display:flex;align-items:center;gap:14px;font-size:.86rem;color:var(--muted)}
+.ghost-btn{font:500 .85rem 'Inter',sans-serif;border:1px solid var(--line);background:#fff;color:var(--navy);padding:9px 16px;border-radius:99px;cursor:pointer;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.ghost-btn:hover{border-color:var(--blue);color:var(--blue)}
+.ghost-btn svg{width:16px;height:16px}
+main.app{padding:36px 0 80px}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:28px}
+.head h1{font-size:clamp(1.9rem,3vw,2.5rem);color:var(--navy)}
+.head p{color:var(--muted);font-size:.93rem}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:22px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.tile span{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.tile b{display:block;font-family:'Fraunces',serif;font-weight:400;font-size:2.4rem;color:var(--navy);line-height:1.1;margin-top:8px}
+.tile small{color:var(--muted);font-size:.82rem}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px 28px;margin-bottom:22px}
+.card h2{font-size:1.25rem;color:var(--navy);margin-bottom:18px}
+.bars{display:grid;gap:14px}
+.bar-row{display:grid;grid-template-columns:minmax(0,1.4fr) 3fr 44px;gap:16px;align-items:center;font-size:.88rem}
+.bar-row .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{height:10px;background:var(--bg);border-radius:99px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--navy),var(--blue));border-radius:99px}
+.bar-row .n{text-align:right;font-weight:600;color:var(--navy)}
+.empty{color:var(--muted);font-size:.9rem;padding:8px 0}
+
+/* TOOLBAR + TABLE */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.toolbar input,.toolbar select{font:inherit;font-size:.88rem;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.toolbar input{flex:1;min-width:200px}
+.toolbar input:focus,.toolbar select:focus{outline:2px solid var(--blue);border-color:transparent;background:#fff}
+.toolbar .spacer{flex:1}
+.count{font-size:.84rem;color:var(--muted);margin-bottom:10px}
+.table-wrap{overflow-x:auto;margin:0 -28px;padding:0 28px}
+table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:760px}
+th{text-align:left;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer;user-select:none;white-space:nowrap}
+th[data-sort]:hover{color:var(--navy)}
+th .arr{opacity:.5;margin-left:4px}
+td{padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr{cursor:pointer;transition:background .15s}
+tbody tr:hover{background:#f3f8fb}
+td .em{font-weight:500;color:var(--navy)}
+td .sub{font-size:.8rem;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip-s{font-size:.74rem;padding:3px 9px;border-radius:99px;background:var(--blue-soft);color:var(--navy);white-space:nowrap}
+.status{font:500 .78rem 'Inter',sans-serif;border:0;border-radius:99px;padding:5px 26px 5px 11px;cursor:pointer;appearance:none;-webkit-appearance:none;
+  background-repeat:no-repeat;background-position:right 9px center;background-size:9px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23334' stroke-width='1.5'/%3E%3C/svg%3E")}
+.s-new{background-color:#dbe9f5;color:#1e4a6b}
+.s-contacted{background-color:#fdf1d6;color:#8a6410}
+.s-qualified{background-color:#e7e1f7;color:#4b3a8c}
+.s-customer{background-color:#dff6ec;color:#17704e}
+.s-archived{background-color:#eceff2;color:#5a6b7a}
+
+/* DRAWER */
+.scrim{position:fixed;inset:0;background:rgba(14,34,50,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(480px,100%);background:#fff;z-index:41;box-shadow:-30px 0 60px -30px rgba(20,52,76,.45);transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.d-head{padding:26px 28px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.d-head h2{font-size:1.35rem;color:var(--navy);word-break:break-all}
+.d-head p{font-size:.82rem;color:var(--muted);margin-top:4px}
+.d-body{padding:24px 28px;overflow-y:auto;flex:1}
+.d-body h3{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-family:'Inter',sans-serif;font-weight:500;margin:26px 0 12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hist{list-style:none;display:grid;gap:10px}
+.hist li{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;padding:12px 14px;background:var(--bg);border-radius:12px}
+.hist time{color:var(--muted);white-space:nowrap;font-size:.8rem}
+.d-foot{padding:18px 28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+.danger{font:500 .85rem 'Inter',sans-serif;background:none;border:0;color:#a12828;cursor:pointer}
+.danger:hover{text-decoration:underline}
+.x{background:none;border:0;font-size:1.6rem;line-height:1;color:var(--muted);cursor:pointer}
+
+@media(max-width:980px){.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){
+  .top-r .who{display:none}
+  .card{padding:22px 18px}
+  .table-wrap{margin:0 -18px;padding:0 18px}
+  .bar-row{grid-template-columns:1fr 44px}.bar-track{grid-column:1/-1;grid-row:2}
+  .two{grid-template-columns:1fr}
+  .auth-card{padding:34px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- Not configured yet -->
+<section class="auth" id="view-setup" hidden>
+  <div class="auth-card">
+    <img src="assets/innoplot-library-logo-nav.png" alt="InnoPlot Library">
+    <h1>CRM not connected</h1>
+    <p>Add the Supabase Project URL and anon key to <code>config.js</code>, and run <code>supabase/schema.sql</code> once in the Supabase SQL Editor.</p>
+  </div>
+</section>
+
+<!-- Sign in -->
+<section class="auth" id="view-login" hidden>
+  <form class="auth-card" id="login-form">
+    <img src="assets/innoplot-library-logo-nav.png" alt="InnoPlot Library">
+    <h1>Team login</h1>
+    <p>Sign in to see who downloaded what from the Library.</p>
+    <div class="field"><label for="l-email">Email</label><input id="l-email" type="email" required autocomplete="username"></div>
+    <div class="field"><label for="l-pass">Password</label><input id="l-pass" type="password" required autocomplete="current-password"></div>
+    <button class="btn" type="submit">Sign in</button>
+    <button class="alt" type="button" id="forgot">Forgot your password?</button>
+    <div class="msg" id="login-msg" hidden></div>
+  </form>
+</section>
+
+<!-- Set a new password (after a reset link) -->
+<section class="auth" id="view-reset" hidden>
+  <form class="auth-card" id="reset-form">
+    <img src="assets/innoplot-library-logo-nav.png" alt="InnoPlot Library">
+    <h1>Set a new password</h1>
+    <p>Choose a password of at least 8 characters.</p>
+    <div class="field"><label for="r-pass">New password</label><input id="r-pass" type="password" minlength="8" required autocomplete="new-password"></div>
+    <button class="btn" type="submit">Save password</button>
+    <div class="msg" id="reset-msg" hidden></div>
+  </form>
+</section>
+
+<!-- Signed in, but not on the admin list -->
+<section class="auth" id="view-denied" hidden>
+  <div class="auth-card">
+    <img src="assets/innoplot-library-logo-nav.png" alt="InnoPlot Library">
+    <h1>No access</h1>
+    <p>This account isn’t on the CRM access list. Ask an admin to add your email to <code>crm_admins</code>.</p>
+    <button class="btn" type="button" data-signout>Sign out</button>
+  </div>
+</section>
+
+<!-- The CRM -->
+<div id="view-app" hidden>
+  <header class="top">
+    <div class="wrap">
+      <div class="top-l"><a href="index.html"><img src="assets/innoplot-library-logo-nav.png" alt="InnoPlot Library"></a><span class="badge">CRM</span></div>
+      <div class="top-r"><span class="who" id="who"></span><button class="ghost-btn" type="button" data-signout>Sign out</button></div>
+    </div>
+  </header>
+
+  <main class="app wrap">
+    <div class="head">
+      <div><h1>Contacts</h1><p>Everyone who left their email to download a resource.</p></div>
+      <div style="display:flex;gap:10px">
+        <button class="ghost-btn" type="button" id="refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg>Refresh</button>
+        <button class="ghost-btn" type="button" id="export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16"/></svg>Export CSV</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="tile"><span>Contacts</span><b id="st-total">–</b><small>unique email addresses</small></div>
+      <div class="tile"><span>New this week</span><b id="st-week">–</b><small>first seen in the last 7 days</small></div>
+      <div class="tile"><span>Downloads</span><b id="st-dl">–</b><small>all resources, all time</small></div>
+      <div class="tile"><span>To follow up</span><b id="st-new">–</b><small>status “new”</small></div>
+    </div>
+
+    <section class="card">
+      <h2>Downloads per resource</h2>
+      <div class="bars" id="bars"></div>
+    </section>
+
+    <section class="card">
+      <div class="toolbar">
+        <input type="search" id="q" placeholder="Search email, name, company or notes…" aria-label="Search">
+        <select id="f-status" aria-label="Filter by status"><option value="">All statuses</option></select>
+        <select id="f-res" aria-label="Filter by resource"><option value="">All resources</option></select>
+      </div>
+      <div class="count" id="count"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="email">Contact<span class="arr"></span></th>
+            <th data-sort="status">Status<span class="arr"></span></th>
+            <th>Downloaded</th>
+            <th data-sort="first_seen_at">First seen<span class="arr"></span></th>
+            <th data-sort="last_seen_at">Last activity<span class="arr"></span></th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="empty" hidden>No contacts match.</div>
+    </section>
+  </main>
+</div>
+
+<!-- Contact detail drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Contact details">
+  <div class="d-head">
+    <div><h2 id="d-email"></h2><p id="d-meta"></p></div>
+    <button class="x" type="button" id="d-close" aria-label="Close">×</button>
+  </div>
+  <form class="d-body" id="d-form">
+    <div class="two">
+      <div class="field"><label for="d-name">Name</label><input id="d-name" maxlength="200"></div>
+      <div class="field"><label for="d-company">Company</label><input id="d-company" maxlength="200"></div>
+    </div>
+    <div class="field"><label for="d-status">Status</label><select id="d-status"></select></div>
+    <div class="field"><label for="d-notes">Notes</label><textarea id="d-notes" rows="5" maxlength="5000" placeholder="Call notes, follow-ups, context…"></textarea></div>
+    <h3>Download history</h3>
+    <ul class="hist" id="d-hist"></ul>
+  </form>
+  <div class="d-foot">
+    <button class="danger" type="button" id="d-delete">Delete contact</button>
+    <button class="btn" type="submit" form="d-form" id="d-save">Save changes</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="crm.js"></script>
+</body>
+</html>
