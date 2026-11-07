@@ -243,6 +243,5 @@ grant execute on function public.record_order(text, text, text, text, text, inte
 -- Replace these with the real addresses, then run. Each person then signs in
 -- at /crm.html with Google, or creates an account with that email at /account.html.
 insert into public.crm_admins (email) values
-  ('nathanvaevin@gmail.com');
--- Add Koen later with:
---   insert into public.crm_admins (email) values ('koens-email@example.com');
+  ('nathanvaevin@gmail.com'),
+  ('koen@innoplot.nl');
