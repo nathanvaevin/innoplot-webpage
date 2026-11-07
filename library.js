@@ -28,7 +28,8 @@ function captureLead(email,resource,file){
   if(!cfg.supabaseUrl||!cfg.supabaseAnonKey)return;
   fetch(cfg.supabaseUrl+'/rest/v1/rpc/capture_lead',{
     method:'POST',keepalive:true,
-    headers:{'Content-Type':'application/json',apikey:cfg.supabaseAnonKey,Authorization:'Bearer '+cfg.supabaseAnonKey},
+    headers:Object.assign({'Content-Type':'application/json',apikey:cfg.supabaseAnonKey},
+      cfg.supabaseAnonKey.startsWith('sb_')?{}:{Authorization:'Bearer '+cfg.supabaseAnonKey}),
     body:JSON.stringify({p_email:email,p_resource:resource,p_source_page:location.pathname,p_consent:true,p_file:file||null})
   }).catch(()=>{});
 }
