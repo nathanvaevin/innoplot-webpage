@@ -35,8 +35,16 @@ async function init() {
   if (location.hash.includes('type=recovery')) { show('reset'); return; }
 
   const { data: { session } } = await sb.auth.getSession();
-  if (session) enter(session);
-  else show(params.get('signup') ? 'signup' : 'signin');
+  if (session) { enter(session); return; }
+  show(params.get('signup') ? 'signup' : 'signin');
+
+  // A failed sign-in comes back with the reason in the URL; show it instead of a silent blank form.
+  const back = new URLSearchParams(location.hash.slice(1));
+  const why = back.get('error_description') || params.get('error_description');
+  if (why) {
+    message($('#si-msg'), 'Sign-in failed: ' + why.replace(/\+/g, ' '), 'err');
+    history.replaceState(null, '', location.pathname);
+  }
 }
 
 document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go)));
