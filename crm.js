@@ -6,7 +6,7 @@ const $ = s => document.querySelector(s);
 const STATUSES = ['new', 'contacted', 'qualified', 'customer', 'archived'];
 const VIEWS = ['setup', 'login', 'reset', 'denied', 'app'];
 
-let sb, contacts = [], openId = null, sortKey = 'last_seen_at', sortDir = -1;
+let sb, contacts = [], openId = null, sortKey = 'last_seen_at', sortDir = -1, orderFilter = 'paid';
 
 // ------------------------------------------------------------------ helpers
 
@@ -16,6 +16,11 @@ const fmtDate = d => d ? new Date(d).toLocaleDateString('en-GB', { day: 'numeric
 const fmtDateTime = d => d ? new Date(d).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 const uniqueResources = c => [...new Set(c.downloads.map(d => d.resource))];
+const money = (cents, cur) => new Intl.NumberFormat('nl-NL', { style: 'currency', currency: (cur || 'eur').toUpperCase() }).format(cents / 100);
+const allOrders = () => contacts.flatMap(c => c.orders.map(o => ({ ...o, email: c.email, contactId: c.id })))
+  .sort((a, b) => b.created_at.localeCompare(a.created_at));
+const fmtAddress = a => a ? [a.line1, a.line2, [a.postal_code, a.city].filter(Boolean).join(' '), a.state, a.country]
+  .filter(Boolean).map(esc).join('<br>') : '';
 
 function show(view) { VIEWS.forEach(v => { $('#view-' + v).hidden = v !== view; }); }
 
@@ -67,6 +72,9 @@ $('#login-form').addEventListener('submit', async e => {
   enter(data.session);
 });
 
+$('#google').addEventListener('click', () =>
+  sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } }));
+
 $('#forgot').addEventListener('click', async () => {
   const msg = $('#login-msg'), email = $('#l-email').value.trim();
   if (!email) { message(msg, 'Enter your email address first.', 'err'); return; }
@@ -91,15 +99,31 @@ document.querySelectorAll('[data-signout]').forEach(b =>
 
 async function load() {
   const { data, error } = await sb.from('contacts')
-    .select('id,email,name,company,status,notes,first_seen_at,last_seen_at,downloads(resource,source_page,created_at)')
+    .select('id,email,user_id,name,company,status,notes,first_seen_at,last_seen_at,' +
+      'downloads(resource,source_page,created_at),' +
+      'orders(id,product,quantity,amount_total,currency,status,customer_name,phone,shipping,created_at,shipped_at)')
     .order('last_seen_at', { ascending: false });
   if (error) { toast('Could not load contacts: ' + error.message); return; }
+  const newestFirst = (a, b) => b.created_at.localeCompare(a.created_at);
   contacts = data.map(c => ({
-    ...c, downloads: (c.downloads || []).sort((a, b) => b.created_at.localeCompare(a.created_at))
+    ...c,
+    downloads: (c.downloads || []).sort(newestFirst),
+    orders: (c.orders || []).sort(newestFirst)
   }));
   fillResourceFilter();
   renderStats();
+  renderOrders();
   render();
+}
+
+async function setOrderStatus(id, status) {
+  const patch = { status, shipped_at: status === 'shipped' ? new Date().toISOString() : null };
+  const { error } = await sb.from('orders').update(patch).eq('id', id);
+  if (error) { toast('Update failed: ' + error.message); return; }
+  contacts.forEach(c => c.orders.forEach(o => { if (o.id === id) Object.assign(o, patch); }));
+  renderStats(); renderOrders(); render();
+  if (openId) openDrawer(openId);
+  toast(status === 'shipped' ? 'Marked as shipped' : 'Moved back to “to ship”');
 }
 
 async function saveContact(id, patch) {
@@ -117,7 +141,10 @@ function renderStats() {
   $('#st-total').textContent = contacts.length;
   $('#st-week').textContent = contacts.filter(c => new Date(c.first_seen_at) > weekAgo).length;
   $('#st-dl').textContent = downloads.length;
-  $('#st-new').textContent = contacts.filter(c => c.status === 'new').length;
+  const sold = allOrders().filter(o => o.status !== 'cancelled');
+  $('#st-sold').textContent = sold.reduce((n, o) => n + o.quantity, 0);
+  $('#st-rev').textContent = money(sold.reduce((n, o) => n + o.amount_total, 0), 'eur') + ' revenue';
+  $('#st-ship').textContent = sold.filter(o => o.status === 'paid').length;
 
   const counts = {};
   downloads.forEach(d => { counts[d.resource] = (counts[d.resource] || 0) + 1; });
@@ -131,6 +158,37 @@ function renderStats() {
     </div>`).join('') : '<div class="empty">No downloads yet.</div>';
 }
 
+function renderOrders() {
+  const all = allOrders();
+  const list = orderFilter ? all.filter(o => o.status === orderFilter) : all;
+  $('#o-rows').innerHTML = list.map(o => `
+    <tr>
+      <td>${fmtDate(o.created_at)}</td>
+      <td><div class="em">${esc(o.customer_name || o.email)}</div>${o.customer_name ? `<div class="sub">${esc(o.email)}</div>` : ''}${o.phone ? `<div class="sub">${esc(o.phone)}</div>` : ''}</td>
+      <td>${esc(o.product)}</td>
+      <td>${money(o.amount_total, o.currency)}</td>
+      <td><div class="addr">${fmtAddress(o.shipping) || '—'}</div></td>
+      <td>${o.status === 'paid'
+        ? `<button class="ship-btn" type="button" data-ship="${o.id}">Mark shipped</button>`
+        : `<span class="o-status o-${esc(o.status)}">${cap(esc(o.status))}${o.shipped_at ? ' ' + fmtDate(o.shipped_at) : ''}</span>${o.status === 'shipped' ? `<button class="undo" type="button" data-unship="${o.id}">undo</button>` : ''}`}</td>
+    </tr>`).join('');
+  const empty = $('#o-empty');
+  empty.hidden = list.length > 0;
+  empty.textContent = all.length ? 'Nothing left to ship.' : 'No orders yet. Paid Stripe orders appear here automatically.';
+}
+
+document.querySelectorAll('[data-ofilter]').forEach(b => b.addEventListener('click', () => {
+  orderFilter = b.dataset.ofilter;
+  document.querySelectorAll('[data-ofilter]').forEach(x => x.setAttribute('aria-pressed', x === b));
+  renderOrders();
+}));
+
+$('#o-rows').addEventListener('click', e => {
+  const ship = e.target.closest('[data-ship]'), unship = e.target.closest('[data-unship]');
+  if (ship) setOrderStatus(Number(ship.dataset.ship), 'shipped');
+  if (unship) setOrderStatus(Number(unship.dataset.unship), 'paid');
+});
+
 function fillResourceFilter() {
   const sel = $('#f-res'), current = sel.value;
   const all = [...new Set(contacts.flatMap(uniqueResources))].sort();
@@ -141,10 +199,12 @@ function fillResourceFilter() {
 
 function filtered() {
   const q = $('#q').value.trim().toLowerCase();
-  const st = $('#f-status').value, res = $('#f-res').value;
+  const st = $('#f-status').value, res = $('#f-res').value, type = $('#f-type').value;
+  const types = { downloaded: c => c.downloads.length > 0, bought: c => c.orders.length > 0, account: c => !!c.user_id };
   return contacts
     .filter(c => !st || c.status === st)
     .filter(c => !res || c.downloads.some(d => d.resource === res))
+    .filter(c => !type || types[type](c))
     .filter(c => !q || [c.email, c.name, c.company, c.notes].some(v => (v || '').toLowerCase().includes(q)))
     .sort((a, b) => String(a[sortKey] ?? '').localeCompare(String(b[sortKey] ?? '')) * sortDir);
 }
@@ -161,10 +221,10 @@ function render() {
   $('#empty').hidden = list.length > 0;
   $('#rows').innerHTML = list.map(c => `
     <tr data-id="${esc(c.id)}">
-      <td><div class="em">${esc(c.email)}</div>${c.name || c.company
+      <td><div class="em">${esc(c.email)}${c.user_id ? '<span class="acct" title="Has a Library account">Account</span>' : ''}</div>${c.name || c.company
         ? `<div class="sub">${esc([c.name, c.company].filter(Boolean).join(' · '))}</div>` : ''}</td>
       <td>${statusSelect(c)}</td>
-      <td><div class="chips">${uniqueResources(c).map(r => `<span class="chip-s">${esc(r)}</span>`).join('')}</div></td>
+      <td><div class="chips">${c.orders.map(o => `<span class="chip-o">Bought: ${esc(o.product)}</span>`).join('')}${uniqueResources(c).map(r => `<span class="chip-s">${esc(r)}</span>`).join('')}</div></td>
       <td>${fmtDate(c.first_seen_at)}</td>
       <td>${fmtDate(c.last_seen_at)}</td>
     </tr>`).join('');
@@ -176,7 +236,7 @@ function render() {
 // ------------------------------------------------------------------ table interactions
 
 $('#f-status').innerHTML += STATUSES.map(s => `<option value="${s}">${cap(s)}</option>`).join('');
-['#q', '#f-status', '#f-res'].forEach(s => $(s).addEventListener('input', render));
+['#q', '#f-status', '#f-res', '#f-type'].forEach(s => $(s).addEventListener('input', render));
 $('#refresh').addEventListener('click', load);
 
 document.querySelectorAll('th[data-sort]').forEach(th => th.addEventListener('click', () => {
@@ -207,7 +267,12 @@ function openDrawer(id) {
   const c = contacts.find(x => x.id === id); if (!c) return;
   openId = id;
   $('#d-email').textContent = c.email;
-  $('#d-meta').textContent = `First seen ${fmtDate(c.first_seen_at)} · ${c.downloads.length} download${c.downloads.length === 1 ? '' : 's'}`;
+  const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+  $('#d-meta').textContent = `First seen ${fmtDate(c.first_seen_at)} · ${plural(c.downloads.length, 'download')} · ${plural(c.orders.length, 'order')}${c.user_id ? ' · has an account' : ''}`;
+  $('#d-orders').innerHTML = c.orders.length ? c.orders.map(o =>
+    `<li><span>${esc(o.product)} · ${money(o.amount_total, o.currency)}<br><span class="addr">${fmtAddress(o.shipping)}</span></span>` +
+    `<time>${fmtDate(o.created_at)}<br>${cap(esc(o.status))}</time></li>`).join('')
+    : '<li><span class="addr">No orders</span></li>';
   $('#d-name').value = c.name || '';
   $('#d-company').value = c.company || '';
   $('#d-status').value = c.status;
@@ -239,11 +304,11 @@ $('#d-form').addEventListener('submit', async e => {
 
 $('#d-delete').addEventListener('click', async () => {
   const c = contacts.find(x => x.id === openId);
-  if (!c || !confirm(`Delete ${c.email} and their download history? This cannot be undone.`)) return;
+  if (!c || !confirm(`Delete ${c.email} with their download and order history? This cannot be undone.`)) return;
   const { error } = await sb.from('contacts').delete().eq('id', c.id);
   if (error) { toast('Delete failed: ' + error.message); return; }
   contacts = contacts.filter(x => x.id !== c.id);
-  closeDrawer(); fillResourceFilter(); renderStats(); render(); toast('Contact deleted');
+  closeDrawer(); fillResourceFilter(); renderStats(); renderOrders(); render(); toast('Contact deleted');
 });
 
 // ------------------------------------------------------------------ CSV export
@@ -255,10 +320,10 @@ $('#export').addEventListener('click', () => {
     if (/^[=+\-@]/.test(s)) s = "'" + s;
     return '"' + s.replace(/"/g, '""') + '"';
   };
-  const header = ['Email', 'Name', 'Company', 'Status', 'First seen', 'Last activity', 'Downloads', 'Resources', 'Notes'];
+  const header = ['Email', 'Name', 'Company', 'Status', 'Has account', 'First seen', 'Last activity', 'Downloads', 'Resources', 'Orders', 'Books bought', 'Notes'];
   const lines = filtered().map(c => [
-    c.email, c.name, c.company, c.status, c.first_seen_at, c.last_seen_at,
-    c.downloads.length, uniqueResources(c).join('; '), c.notes
+    c.email, c.name, c.company, c.status, c.user_id ? 'yes' : 'no', c.first_seen_at, c.last_seen_at,
+    c.downloads.length, uniqueResources(c).join('; '), c.orders.length, c.orders.map(o => o.product).join('; '), c.notes
   ].map(cell).join(','));
   const blob = new Blob(['﻿' + [header.map(cell).join(','), ...lines].join('\r\n')], { type: 'text/csv;charset=utf-8' });
   const a = document.createElement('a');

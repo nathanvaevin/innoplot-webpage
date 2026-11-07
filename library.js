@@ -2,11 +2,15 @@
 const modal=document.getElementById('modal'),dialog=document.getElementById('dialog'),
       form=document.getElementById('form'),toast=document.getElementById('toast');
 let current='',currentFile='';
+const accountsOn=!!(window.INNOPLOT_CONFIG||{}).supabaseUrl;
+if(!accountsOn)document.querySelectorAll('li > a[href="account.html"]').forEach(a=>a.parentElement.remove());
 
 function openModal(name,file){
   current=name;currentFile=file||'';
   document.getElementById('docname').textContent='“'+name+'”';
   dialog.classList.remove('sent');form.reset();
+  const me=signedInEmail();
+  if(me)document.getElementById('email').value=me;
   modal.classList.add('open');
   setTimeout(()=>document.getElementById('email').focus(),50);
 }
@@ -19,21 +23,37 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
 // Store the lead in Supabase (see supabase/schema.sql). Fire-and-forget: the
 // download must never depend on this call succeeding.
-function captureLead(email,resource){
+function captureLead(email,resource,file){
   const cfg=window.INNOPLOT_CONFIG||{};
   if(!cfg.supabaseUrl||!cfg.supabaseAnonKey)return;
   fetch(cfg.supabaseUrl+'/rest/v1/rpc/capture_lead',{
     method:'POST',keepalive:true,
     headers:{'Content-Type':'application/json',apikey:cfg.supabaseAnonKey,Authorization:'Bearer '+cfg.supabaseAnonKey},
-    body:JSON.stringify({p_email:email,p_resource:resource,p_source_page:location.pathname,p_consent:true})
+    body:JSON.stringify({p_email:email,p_resource:resource,p_source_page:location.pathname,p_consent:true,p_file:file||null})
   }).catch(()=>{});
+}
+
+// Email of a visitor signed in on account.html, read from supabase-js's stored session.
+function signedInEmail(){
+  try{
+    for(let i=0;i<localStorage.length;i++){
+      const k=localStorage.key(i);
+      if(/^sb-.+-auth-token$/.test(k))return JSON.parse(localStorage.getItem(k)).user.email||'';
+    }
+  }catch(e){}
+  return '';
 }
 
 form.addEventListener('submit',e=>{
   e.preventDefault();
   const email=document.getElementById('email').value;
-  captureLead(email,current);
+  captureLead(email,current,currentFile);
   document.getElementById('sentto').textContent=email;
+  const acc=document.getElementById('acc-link');
+  if(acc){
+    acc.hidden=!accountsOn||!!signedInEmail();
+    acc.querySelector('a').href='account.html?signup=1&email='+encodeURIComponent(email);
+  }
   dialog.classList.add('sent');
   if(currentFile){
     const a=document.createElement('a');

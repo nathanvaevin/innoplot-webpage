@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>My Library | InnoPlot Library</title>
+<meta name="description" content="Sign in to find every resource you downloaded and every book you ordered from the InnoPlot Library.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="library.css">
+<style>
+[hidden]{display:none!important}
+.hero{padding:150px 0 140px}
+.hero h1{margin-bottom:14px}
+
+.main{position:relative;z-index:2;margin-top:-80px;padding-bottom:110px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:40px 44px 46px}
+
+/* AUTH */
+.auth{max-width:440px;margin:0 auto}
+.auth h2{font-size:1.8rem;color:var(--navy);margin-bottom:6px}
+.auth>p{color:var(--muted);font-size:.93rem;margin-bottom:24px}
+.auth .btn{width:100%;justify-content:center}
+.google{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;font:500 .95rem 'Inter',sans-serif;padding:14px 20px;border-radius:99px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;transition:.2s}
+.google:hover{border-color:var(--blue);box-shadow:0 8px 20px -12px rgba(20,52,76,.4)}
+.google svg{width:19px;height:19px}
+.or{display:flex;align-items:center;gap:14px;margin:22px 0;color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.14em}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.links{display:flex;justify-content:space-between;gap:12px;margin-top:18px;flex-wrap:wrap}
+.links button{background:none;border:0;color:var(--muted);font:500 .85rem 'Inter',sans-serif;cursor:pointer;text-decoration:underline;padding:0}
+.links button:hover{color:var(--navy)}
+.msg{font-size:.86rem;margin-top:16px;padding:10px 14px;border-radius:10px}
+.msg.err{background:#fdecec;color:#a12828}
+.msg.ok{background:#dff6ec;color:#17704e}
+.fine{font-size:.78rem;color:var(--muted);margin-top:16px}
+.fine a{color:var(--navy)}
+
+/* LIBRARY */
+.lib-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-bottom:8px}
+.lib-head h2{font-size:clamp(1.6rem,2.6vw,2.1rem);color:var(--navy)}
+.lib-head p{color:var(--muted);font-size:.9rem}
+.ghost-btn{font:500 .85rem 'Inter',sans-serif;border:1px solid var(--line);background:#fff;color:var(--navy);padding:9px 18px;border-radius:99px;cursor:pointer;transition:.2s}
+.ghost-btn:hover{border-color:var(--blue);color:var(--blue)}
+.sec{margin-top:38px}
+.sec h3{font-family:'Inter',sans-serif;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--navy);margin-bottom:16px}
+.items{display:grid;gap:12px}
+.item{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 22px;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:6px 14px 14px 6px;background:#fff}
+.item.order{border-left-color:var(--gold)}
+.item h4{font-family:'Fraunces',serif;font-weight:400;font-size:1.12rem;color:var(--navy);line-height:1.3}
+.item small{display:block;color:var(--muted);font-size:.82rem;margin-top:3px}
+.item .btn{padding:11px 20px;font-size:.86rem;white-space:nowrap}
+.pill{font-size:.75rem;font-weight:500;padding:5px 12px;border-radius:99px;white-space:nowrap}
+.pill.paid{background:#fdf1d6;color:#8a6410}
+.pill.shipped{background:#dff6ec;color:#17704e}
+.pill.cancelled{background:#eceff2;color:#5a6b7a}
+.none{padding:22px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:.92rem}
+.none a{color:var(--navy);font-weight:500}
+@media(max-width:640px){
+  .panel{padding:28px 20px 32px}
+  .item{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="/"><img src="assets/innoplot-library-logo-nav.png" alt="InnoPlot Library"></a>
+  <ul>
+    <li><a href="/">Books</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="account.html" aria-current="page">My library</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="net"></div>
+  <div class="wrap">
+    <span class="eyebrow">The InnoPlot Library</span>
+    <h1 id="hero-title">My <em>library</em></h1>
+    <p>Every resource you downloaded and every book you ordered, in one place.</p>
+  </div>
+</header>
+
+<main class="main wrap">
+  <div class="panel">
+
+    <div class="auth" id="view-setup" hidden>
+      <h2>Coming soon</h2>
+      <p>Accounts aren’t switched on yet. In the meantime you can download any resource straight from the <a href="resources.html">resources page</a>.</p>
+    </div>
+
+    <form class="auth" id="view-signin" hidden>
+      <h2>Sign in</h2>
+      <p>Use the email address you downloaded resources or ordered books with, and they’ll all be here.</p>
+      <button class="google" type="button" data-google>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+        Continue with Google
+      </button>
+      <div class="or">or</div>
+      <div class="field"><label for="si-email">Email address</label><input id="si-email" type="email" required autocomplete="username"></div>
+      <div class="field"><label for="si-pass">Password</label><input id="si-pass" type="password" required autocomplete="current-password"></div>
+      <button class="btn" type="submit">Sign in</button>
+      <div class="links">
+        <button type="button" data-go="signup">Create an account</button>
+        <button type="button" id="forgot">Forgot your password?</button>
+      </div>
+      <div class="msg" id="si-msg" hidden></div>
+    </form>
+
+    <form class="auth" id="view-signup" hidden>
+      <h2>Create your account</h2>
+      <p>Free, and it keeps everything you download from the Library in one place.</p>
+      <button class="google" type="button" data-google>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+        Sign up with Google
+      </button>
+      <div class="or">or</div>
+      <div class="field"><label for="su-name">Name</label><input id="su-name" maxlength="120" autocomplete="name"></div>
+      <div class="field"><label for="su-email">Email address</label><input id="su-email" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="su-pass">Password</label><input id="su-pass" type="password" minlength="8" required autocomplete="new-password" placeholder="At least 8 characters"></div>
+      <button class="btn" type="submit">Create account</button>
+      <div class="links"><button type="button" data-go="signin">I already have an account</button></div>
+      <div class="msg" id="su-msg" hidden></div>
+      <p class="fine">We only use your account to show your downloads and orders.</p>
+    </form>
+
+    <div class="auth" id="view-check" hidden>
+      <h2>Check your inbox</h2>
+      <p>We sent a confirmation link to <strong id="check-email"></strong>. Click it to finish creating your account.</p>
+      <div class="links"><button type="button" data-go="signin">Back to sign in</button></div>
+    </div>
+
+    <form class="auth" id="view-reset" hidden>
+      <h2>Set a new password</h2>
+      <p>Choose a password of at least 8 characters.</p>
+      <div class="field"><label for="r-pass">New password</label><input id="r-pass" type="password" minlength="8" required autocomplete="new-password"></div>
+      <button class="btn" type="submit">Save password</button>
+      <div class="msg" id="reset-msg" hidden></div>
+    </form>
+
+    <div id="view-app" hidden>
+      <div class="lib-head">
+        <div><h2 id="greet">Your library</h2><p id="who"></p></div>
+        <button class="ghost-btn" type="button" id="signout">Sign out</button>
+      </div>
+
+      <section class="sec">
+        <h3>Downloaded resources</h3>
+        <div class="items" id="downloads"></div>
+      </section>
+
+      <section class="sec">
+        <h3>Book orders</h3>
+        <div class="items" id="orders"></div>
+      </section>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <img src="assets/innoplot-library-logo.png" alt="InnoPlot Library">
+      <p>Books, whitepapers and insights on innovation, strategy and AI by Koen Klokgieters.</p>
+    </div>
+    <div>
+      <h4>Library</h4>
+      <ul>
+        <li><a href="/">Books</a></li>
+        <li><a href="resources.html">Downloadable resources</a></li>
+        <li><a href="account.html">My library</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>InnoPlot</h4>
+      <ul>
+        <li><a href="https://innoplot.com" target="_blank" rel="noopener">innoplot.com ↗</a></li>
+        <li><a href="https://innoplot.com" target="_blank" rel="noopener">Business &amp; Technology Innovation</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <address>
+        <!-- TODO: add the contact email address once confirmed -->
+        <a href="tel:+31646934577">+31 (0) 6 46 93 45 77</a><br>
+        Gebouw N, Haaksbergerstraat 67<br>
+        7554 PA Hengelo
+      </address>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 InnoPlot · The InnoPlot Library</span>
+    <span>Hengelo | Rotterdam | Den Haag | Leiden | Bilthoven</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4"></script>
+<script src="config.js"></script>
+<script src="account.js"></script>
+</body>
+</html>
