@@ -57,37 +57,102 @@
 <main class="list wrap">
   <div class="panel">
     <div class="bar">
-      <h2>All resources</h2>
-      <div class="chips" role="group" aria-label="Filter resources">
+      <h2 id="list-title">All resources (12)</h2>
+      <div class="chips" role="group" aria-label="Filter resources by theme">
         <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
-        <button class="chip" type="button" data-filter="whitepaper" aria-pressed="false">Whitepapers</button>
-        <button class="chip" type="button" data-filter="article" aria-pressed="false">Articles</button>
+        <button class="chip" type="button" data-filter="innovation" aria-pressed="false">Innovation</button>
+        <button class="chip" type="button" data-filter="ai" aria-pressed="false">AI</button>
+        <button class="chip" type="button" data-filter="strategy" aria-pressed="false">Strategy</button>
+        <button class="chip" type="button" data-filter="business" aria-pressed="false">Business</button>
+        <button class="chip" type="button" data-filter="tools" aria-pressed="false">Tools</button>
       </div>
     </div>
 
     <div class="grid">
-      <article class="art" data-type="whitepaper">
-        <div class="tag"><span>Whitepaper 01</span><span>PDF</span></div>
+      <article class="art c3" data-themes="ai business">
+        <div class="tag"><span>AI series · 01</span><span>PDF</span></div>
+        <h3>Between Promise and Peril: A Moral Compass for the Age of AI</h3>
+        <p>What earlier technological disruptions teach leaders about AI — and a five-dimension governance model for developing and deploying it responsibly.</p>
+        <div class="themes"><span>AI</span><span>Business</span></div>
+        <button class="link" type="button" data-doc="Between Promise and Peril: A Moral Compass for the Age of AI" data-file="assets/whitepapers/InnoPlot_AI_01_Moral_Compass.pdf">Get the PDF →</button>
+      </article>
+      <article class="art c3" data-themes="ai strategy">
+        <div class="tag"><span>AI series · 02</span><span>PDF</span></div>
+        <h3>If the AI Bubble Bursts, Will You Win or Lose?</h3>
+        <p>Why being right about a technology isn't the same as being right about the investment — and where value in the AI value chain is real versus priced on faith.</p>
+        <div class="themes"><span>AI</span><span>Strategy</span></div>
+        <button class="link" type="button" data-doc="If the AI Bubble Bursts, Will You Win or Lose?" data-file="assets/whitepapers/InnoPlot_AI_02_AI_Bubble.pdf">Get the PDF →</button>
+      </article>
+      <article class="art c3" data-themes="ai business">
+        <div class="tag"><span>AI series · 03</span><span>PDF</span></div>
+        <h3>The AI Resistance Pyramid</h3>
+        <p>The five layers of resistance that block AI adoption — from knowledge to politics — and a Share, Learn, Play, Design process that turns resistance into ownership.</p>
+        <div class="themes"><span>AI</span><span>Business</span></div>
+        <button class="link" type="button" data-doc="The AI Resistance Pyramid" data-file="assets/whitepapers/InnoPlot_AI_03_Resistance_Pyramid.pdf">Get the PDF →</button>
+      </article>
+      <article class="art c3" data-themes="ai business tools">
+        <div class="tag"><span>AI series · 04</span><span>PDF</span></div>
+        <h3>The Real Impact of AI Is in Your Business Processes</h3>
+        <p>How AI is shifting the seven core activities of every organisation from people to machines — including a one-page AI-readiness assessment.</p>
+        <div class="themes"><span>AI</span><span>Business</span><span>Tools</span></div>
+        <button class="link" type="button" data-doc="The Real Impact of AI Is in Your Business Processes" data-file="assets/whitepapers/InnoPlot_AI_04_Business_Processes.pdf">Get the PDF →</button>
+      </article>
+      <article class="art c3" data-themes="ai">
+        <div class="tag"><span>AI series · 05 · Essay</span><span>PDF</span></div>
+        <h3>What Holds Society Together in the Age of AI?</h3>
+        <p>What Zygmunt Bauman's “liquid modernity” teaches us about freedom, community and collective responsibility as intelligence becomes widely available.</p>
+        <div class="themes"><span>AI</span></div>
+        <button class="link" type="button" data-doc="What Holds Society Together in the Age of AI?" data-file="assets/whitepapers/InnoPlot_AI_05_Society_and_AI.pdf">Get the PDF →</button>
+      </article>
+
+      <article class="art c2" data-themes="innovation tools">
+        <div class="tag"><span>Paradox Thinking · Part 1</span><span>PDF</span></div>
+        <h3>Understanding Innovation Paradoxes</h3>
+        <p>Why competing convictions matter, and how the Innovation Paradox Analysis Canvas helps leadership teams make the tension between them visible.</p>
+        <div class="themes"><span>Innovation</span><span>Tools</span></div>
+        <button class="link" type="button" data-doc="Understanding Innovation Paradoxes" data-file="assets/whitepapers/InnoPlot_Paradox_Thinking_Part_1.pdf">Get the PDF →</button>
+      </article>
+      <article class="art c2" data-themes="innovation strategy">
+        <div class="tag"><span>Paradox Thinking · Part 2</span><span>PDF</span></div>
+        <h3>Responding to Innovation Paradoxes</h3>
+        <p>Four ways to respond when two legitimate convictions both claim primacy: Integration, Contextual Differentiation, Dynamic Alternation and Synthesis.</p>
+        <div class="themes"><span>Innovation</span><span>Strategy</span></div>
+        <button class="link" type="button" data-doc="Responding to Innovation Paradoxes" data-file="assets/whitepapers/InnoPlot_Paradox_Thinking_Part_2.pdf">Get the PDF →</button>
+      </article>
+      <article class="art c2" data-themes="strategy tools">
+        <div class="tag"><span>Paradox Thinking · Part 3</span><span>PDF</span></div>
+        <h3>Choosing How to Respond to Innovation Paradoxes</h3>
+        <p>From strategic choice to action: how to position, prioritise, design and learn from your responses to an innovation paradox.</p>
+        <div class="themes"><span>Strategy</span><span>Tools</span></div>
+        <button class="link" type="button" data-doc="Choosing How to Respond to Innovation Paradoxes" data-file="assets/whitepapers/InnoPlot_Paradox_Thinking_Part_3.pdf">Get the PDF →</button>
+      </article>
+
+      <article class="art" data-themes="innovation strategy">
+        <div class="tag"><span>Innovation series · 01</span><span>PDF</span></div>
         <h3>Managing Innovation as a Strategic Capability</h3>
         <p>Why competitive advantage depends on more than technology and new ideas — and which technological and commercial capabilities leaders must combine to create tomorrow's value.</p>
+        <div class="themes"><span>Innovation</span><span>Strategy</span></div>
         <button class="link" type="button" data-doc="Managing Innovation as a Strategic Capability" data-file="assets/whitepapers/InnoPlot_Whitepaper_01_Managing_Innovation.pdf">Get the PDF →</button>
       </article>
-      <article class="art c2" data-type="whitepaper">
-        <div class="tag"><span>Whitepaper 02</span><span>PDF</span></div>
+      <article class="art" data-themes="innovation strategy">
+        <div class="tag"><span>Innovation series · 02</span><span>PDF</span></div>
         <h3>Leading Innovation in Complexity</h3>
         <p>Why strategy, structure and culture must evolve together — and how leaders can recognise complexity, reconcile different perspectives and navigate it without losing direction.</p>
+        <div class="themes"><span>Innovation</span><span>Strategy</span></div>
         <button class="link" type="button" data-doc="Leading Innovation in Complexity" data-file="assets/whitepapers/InnoPlot_Whitepaper_02_Leading_Innovation_in_Complexity.pdf">Get the PDF →</button>
       </article>
-      <article class="art c3" data-type="whitepaper">
-        <div class="tag"><span>Whitepaper 03</span><span>PDF</span></div>
+      <article class="art" data-themes="innovation strategy">
+        <div class="tag"><span>Innovation series · 03</span><span>PDF</span></div>
         <h3>Leading Through Innovation Paradoxes</h3>
         <p>Why the best strategic choices often lie beyond either-or thinking, and how the twelve innovation paradoxes help leaders turn competing perspectives into better decisions.</p>
+        <div class="themes"><span>Innovation</span><span>Strategy</span></div>
         <button class="link" type="button" data-doc="Leading Through Innovation Paradoxes" data-file="assets/whitepapers/InnoPlot_Whitepaper_03_Leading_Through_Innovation_Paradoxes.pdf">Get the PDF →</button>
       </article>
-      <article class="art" data-type="whitepaper">
-        <div class="tag"><span>Whitepaper 04</span><span>PDF</span></div>
+      <article class="art" data-themes="innovation tools">
+        <div class="tag"><span>Innovation series · 04</span><span>PDF</span></div>
         <h3>Building the Capability for Innovation Synthesis</h3>
         <p>Why complex innovation requires more than analysis, control and consensus — introducing the Innovation Synthesis Maturity Model for developing that capability.</p>
+        <div class="themes"><span>Innovation</span><span>Tools</span></div>
         <button class="link" type="button" data-doc="Building the Capability for Innovation Synthesis" data-file="assets/whitepapers/InnoPlot_Whitepaper_04_Building_the_Capability_for_Innovation_Synthesis.pdf">Get the PDF →</button>
       </article>
     </div>

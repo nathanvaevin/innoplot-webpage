@@ -63,5 +63,11 @@ if(new URLSearchParams(location.search).get('order')==='success'){
 document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
   document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));
   const f=c.dataset.filter;
-  document.querySelectorAll('[data-type]').forEach(a=>a.hidden=!(f==='all'||a.dataset.type===f));
+  let n=0;
+  document.querySelectorAll('[data-themes]').forEach(a=>{
+    a.hidden=!(f==='all'||a.dataset.themes.split(' ').includes(f));
+    if(!a.hidden)n++;
+  });
+  const h=document.getElementById('list-title');
+  if(h)h.textContent=(f==='all'?'All resources':c.textContent+' resources')+' ('+n+')';
 }));
