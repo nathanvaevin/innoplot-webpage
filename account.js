@@ -8,6 +8,22 @@ const ORDER_STATUS = { paid: 'Paid · being prepared', shipped: 'Shipped', cance
 
 let sb, enteredAs = null;
 
+// Pages that send visitors here to sign in, and where to send them back afterwards.
+const RETURN_TO = { toolkit: 'toolkit.html' };
+const NEXT_KEY = 'innoplot-next', NEXT_TTL = 60 * 60 * 1000;
+function rememberNext(next) {
+  if (!RETURN_TO[next]) return;
+  try { localStorage.setItem(NEXT_KEY, JSON.stringify({ next, at: Date.now() })); } catch (e) { /* private mode */ }
+}
+function takeNext() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(NEXT_KEY) || 'null');
+    localStorage.removeItem(NEXT_KEY);
+    if (saved && RETURN_TO[saved.next] && Date.now() - saved.at < NEXT_TTL) return RETURN_TO[saved.next];
+  } catch (e) { /* ignore */ }
+  return null;
+}
+
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const fmtDate = d => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -31,6 +47,12 @@ async function init() {
   });
 
   const params = new URLSearchParams(location.search);
+  if (params.get('next') === 'toolkit') {
+    rememberNext('toolkit');
+    const why = 'Free, and it unlocks the Innovation Paradox Thinking Toolkit: the guide and all 21 canvases.';
+    $('#view-signup').querySelector('p').textContent = why;
+    $('#view-signin').querySelector('p').textContent = 'Sign in to unlock the Innovation Paradox Thinking Toolkit.';
+  }
   if (params.get('email')) { $('#su-email').value = params.get('email'); $('#si-email').value = params.get('email'); }
   if (location.hash.includes('type=recovery')) { show('reset'); return; }
 
@@ -110,6 +132,8 @@ async function enter(session) {
   const user = session.user;
   if (enteredAs === user.id) return;
   enteredAs = user.id;
+  const back = takeNext();
+  if (back) { location.replace(back); return; }
   if (location.hash) history.replaceState(null, '', location.pathname);
   show('app');
   $('#who').textContent = 'Signed in as ' + user.email;

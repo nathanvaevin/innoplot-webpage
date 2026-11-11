@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Innovation Paradox Thinking Toolkit | InnoPlot Library</title>
+<meta name="description" content="Seven A3 canvases and a facilitator guide by Koen Klokgieters that take a management team from a strategic tension to a tested response. Free with an InnoPlot Library account.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="library.css">
+<style>
+[hidden]{display:none!important}
+.hero{padding-bottom:150px}
+.hero p.motto{font-family:'Fraunces',serif;font-size:1.3rem;color:#fff;font-weight:400;margin-top:18px}
+.how{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.how span{font-size:.88rem;color:#dbe7f1;padding:9px 16px;border:1px solid rgba(255,255,255,.2);border-radius:99px;background:rgba(255,255,255,.05)}
+
+.list{position:relative;z-index:2;margin-top:-70px;padding-bottom:70px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:40px 44px 50px}
+
+.gate{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:22px;padding:28px 32px;border-radius:22px;background:var(--navy);color:#fff}
+.gate h2{font-size:1.6rem;margin-bottom:6px}
+.gate p{color:#cfe0ee;font-size:.95rem;max-width:520px}
+.gate small{display:block;color:#a9c2d6;font-size:.78rem;margin-top:8px}
+.gate small a{color:inherit}
+.gate-cta{display:flex;flex-direction:column;align-items:center;gap:12px}
+.gate-cta .plain{color:#dbe7f1;font-size:.86rem}
+.gate.open{background:#dff6ec;color:var(--navy-deep)}
+.gate.open p{color:#2c5a48}
+.gate.open p a{color:var(--navy);font-weight:500}
+.gate.open .btn{background:var(--navy);color:#fff;box-shadow:none}
+.gate.open .btn:hover{background:var(--blue)}
+
+.step{margin-top:54px}
+.step-head{margin-bottom:22px;max-width:680px}
+.step-head h2{font-size:clamp(1.5rem,2.4vw,1.9rem);color:var(--navy);margin:8px 0 8px}
+.step-head p{color:var(--muted);font-size:.95rem}
+
+.guide{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;padding:26px 30px;border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:6px 16px 16px 6px}
+.guide h3{font-size:1.35rem;color:var(--navy);margin-bottom:6px}
+.guide p{color:var(--muted);font-size:.93rem;max-width:560px}
+
+.versions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
+.versions div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:.88rem;color:var(--muted)}
+.versions b{display:block;color:var(--navy);font-weight:600;margin-bottom:2px}
+
+.phase{--c:var(--blue);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:6px 16px 16px 6px;margin-bottom:16px;overflow:hidden}
+.phase.p2{--c:var(--gold)}.phase.p3{--c:var(--mint)}.phase.p4{--c:#8a6fc4}
+.phase-head{display:flex;gap:14px;align-items:center;padding:18px 24px;background:var(--bg)}
+.phase-head b{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--c);color:var(--navy-deep);display:grid;place-items:center;font-size:.85rem}
+.phase.p4 .phase-head b{color:#fff}
+.phase-head h3{font-family:'Inter',sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--navy)}
+.phase-head p{color:var(--muted);font-size:.88rem}
+.canvas{display:flex;align-items:center;gap:18px;padding:18px 24px;border-top:1px solid var(--line)}
+.canvas .num{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--blue);width:34px;flex-shrink:0}
+.canvas .what{flex:1;min-width:0}
+.canvas h4{font-family:'Fraunces',serif;font-weight:400;font-size:1.15rem;color:var(--navy);line-height:1.3}
+.canvas p{color:var(--muted);font-size:.88rem}
+.dls{display:flex;gap:8px;flex-shrink:0}
+.dl{display:inline-flex;align-items:center;gap:7px;font:500 .84rem 'Inter',sans-serif;text-decoration:none;color:var(--navy);padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:#fff;white-space:nowrap;transition:.2s}
+.dl::before{content:"";width:12px;height:12px;background:currentColor;opacity:.55;-webkit-mask:var(--lock) center/contain no-repeat;mask:var(--lock) center/contain no-repeat}
+.dl:hover{border-color:var(--blue);color:var(--blue)}
+.btn.dl{border:0;color:var(--navy-deep);padding:15px 30px;font-size:.95rem}
+.btn.dl:hover{color:var(--navy-deep)}
+:root{--lock:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 10V8a6 6 0 1 1 12 0v2h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1zm2 0h8V8a4 4 0 1 0-8 0z'/%3E%3C/svg%3E");
+  --down:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 3h2v10l3.5-3.5 1.4 1.4L12 16.8l-5.9-5.9 1.4-1.4L11 13zM4 19h16v2H4z'/%3E%3C/svg%3E")}
+body.unlocked .dl::before{-webkit-mask-image:var(--down);mask-image:var(--down);opacity:.8}
+body.unlocked .dl{border-color:var(--blue-soft);background:var(--blue-soft)}
+body.unlocked .btn.dl{background:var(--navy);color:#fff}
+
+.more{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;margin-top:40px;padding:30px 36px;border-radius:22px;background:#eef4f8}
+.more p{color:var(--navy);font-family:'Fraunces',serif;font-size:1.3rem;max-width:560px}
+@media(max-width:860px){
+  .canvas{flex-wrap:wrap}
+  .dls{width:100%;padding-left:52px;flex-wrap:wrap}
+  .versions{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .panel{padding:28px 20px 34px}
+  .gate,.more{padding:26px 22px}
+  .gate-cta{align-items:flex-start}
+  .dls{padding-left:0}
+  .phase-head,.canvas{padding-left:18px;padding-right:18px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="/"><img src="assets/innoplot-library-logo-nav.png" alt="InnoPlot Library"></a>
+  <ul>
+    <li><a href="/">Books</a></li>
+    <li><a href="resources.html" aria-current="page">Resources</a></li>
+    <li><a href="account.html">My library</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="net"></div>
+  <div class="wrap">
+    <span class="eyebrow">InnoPlot management toolkit</span>
+    <h1>Innovation Paradox <em>Thinking</em></h1>
+    <p>Seven A3 canvases and a facilitator guide by Koen Klokgieters. They take a management team from a strategic tension between two credible convictions to a tested response.</p>
+    <p class="motto">Think visually. Decide intuitively. Test systematically.</p>
+    <div class="how">
+      <span>7 canvases</span><span>3 versions of each</span><span>Facilitator &amp; user guide</span><span>Free with an account</span>
+    </div>
+  </div>
+</header>
+
+<main class="list wrap">
+  <div class="panel">
+
+    <div class="gate" id="gate-out">
+      <div>
+        <h2>Free with a library account</h2>
+        <p>Create a free account to unlock the guide and all 21 canvas PDFs. Your downloads are saved to your library, so you can always find them again.</p>
+      </div>
+      <div class="gate-cta">
+        <a class="btn mint" href="account.html?signup=1&amp;next=toolkit">Create a free account</a>
+        <a class="plain" href="account.html?next=toolkit">I already have an account</a>
+      </div>
+    </div>
+    <div class="gate open" id="gate-in" hidden>
+      <div>
+        <h2>Your toolkit is unlocked</h2>
+        <p>Signed in as <strong id="who"></strong>. Every download is saved to <a href="account.html">your library</a>.</p>
+      </div>
+      <a class="btn dl" href="account.html?next=toolkit" data-file="assets/whitepapers/InnoPlot_Paradox_Thinking_Toolkit.zip" data-name="Innovation Paradox Thinking Toolkit: complete package">Download everything (.zip)</a>
+    </div>
+
+    <section class="step">
+      <div class="step-head">
+        <span class="eyebrow">Step 1 · Read</span>
+        <h2>Start with the three articles</h2>
+        <p>The articles explain the reasoning behind the method. The canvases turn that reasoning into a structured leadership conversation. Read them in order before a first workshop.</p>
+      </div>
+      <div class="grid">
+        <article class="art c2">
+          <div class="tag"><span>Part 1</span><span>PDF</span></div>
+          <h3>Understanding Innovation Paradoxes</h3>
+          <p>Which two credible convictions are competing in your organisation?</p>
+          <button class="link" type="button" data-doc="Understanding Innovation Paradoxes" data-file="assets/whitepapers/InnoPlot_Paradox_Thinking_Part_1.pdf">Get the PDF →</button>
+        </article>
+        <article class="art c2">
+          <div class="tag"><span>Part 2</span><span>PDF</span></div>
+          <h3>Responding to Innovation Paradoxes</h3>
+          <p>What would each of the four responses actually change in your organisation?</p>
+          <button class="link" type="button" data-doc="Responding to Innovation Paradoxes" data-file="assets/whitepapers/InnoPlot_Paradox_Thinking_Part_2.pdf">Get the PDF →</button>
+        </article>
+        <article class="art c2">
+          <div class="tag"><span>Part 3</span><span>PDF</span></div>
+          <h3>Choosing How to Respond to Innovation Paradoxes</h3>
+          <p>Which response deserves priority now, and what evidence could change that choice?</p>
+          <button class="link" type="button" data-doc="Choosing How to Respond to Innovation Paradoxes" data-file="assets/whitepapers/InnoPlot_Paradox_Thinking_Part_3.pdf">Get the PDF →</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <span class="eyebrow">Step 2 · Prepare</span>
+        <h2>The facilitator &amp; user guide</h2>
+        <p>How to prepare and run the workshop, canvas by canvas, with one worked example that runs through all seven.</p>
+      </div>
+      <div class="guide">
+        <div>
+          <h3>Innovation Paradox Thinking: Facilitator &amp; User Guide</h3>
+          <p>Workshop rhythm, ground rules, instructions per canvas, a one-page experiment brief and what to do when the conversation stalls. 13 pages.</p>
+        </div>
+        <a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Toolkit_Paradox_Thinking_Guide.pdf" data-name="Innovation Paradox Thinking: Facilitator &amp; User Guide">Download the guide</a>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <span class="eyebrow">Step 3 · Work</span>
+        <h2>The seven canvases</h2>
+        <p>Each canvas is an A3 landscape PDF and comes in three versions.</p>
+      </div>
+      <div class="versions">
+        <div><b>Workshop</b>The blank working surface for the team. Print it at A3.</div>
+        <div><b>Guided</b>The same canvas with prompts, for preparation or self-facilitation.</div>
+        <div><b>Example</b>A completed illustration. Look at it after the team has formed its own view.</div>
+      </div>
+      <div class="phase p1">
+        <div class="phase-head"><b>1</b><div><h3>Understand</h3><p>Make the tension visible before anyone proposes a solution.</p></div></div>
+        <div class="canvas"><span class="num">01</span><div class="what"><h4>Innovation Paradox Analysis</h4><p>Understand why both convictions make sense, why they conflict and what is at stake.</p></div><div class="dls"><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_01_Analysis_Workshop.pdf" data-name="Paradox Thinking Canvas 01: Innovation Paradox Analysis (Workshop)">Workshop</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_01_Analysis_Guided.pdf" data-name="Paradox Thinking Canvas 01: Innovation Paradox Analysis (Guided)">Guided</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_01_Analysis_Completed.pdf" data-name="Paradox Thinking Canvas 01: Innovation Paradox Analysis (Example)">Example</a></div></div>
+      </div>
+      <div class="phase p2">
+        <div class="phase-head"><b>2</b><div><h3>Choose</h3><p>Four responses, four different logics. Pick a priority.</p></div></div>
+        <div class="canvas"><span class="num">02</span><div class="what"><h4>Strategic Response</h4><p>Compare the four possible responses and name the one that deserves priority now.</p></div><div class="dls"><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_02_Strategic_Response_Workshop.pdf" data-name="Paradox Thinking Canvas 02: Strategic Response (Workshop)">Workshop</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_02_Strategic_Response_Guided.pdf" data-name="Paradox Thinking Canvas 02: Strategic Response (Guided)">Guided</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_02_Strategic_Response_Completed.pdf" data-name="Paradox Thinking Canvas 02: Strategic Response (Example)">Example</a></div></div>
+      </div>
+      <div class="phase p3">
+        <div class="phase-head"><b>3</b><div><h3>Design &amp; test</h3><p>Use the one canvas that matches your chosen response. These are alternatives, not steps.</p></div></div>
+        <div class="canvas"><span class="num">03</span><div class="what"><h4>Integration Design</h4><p>Combine the two convictions within one shared way of working.</p></div><div class="dls"><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_03_Integration_Workshop.pdf" data-name="Paradox Thinking Canvas 03: Integration Design (Workshop)">Workshop</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_03_Integration_Guided.pdf" data-name="Paradox Thinking Canvas 03: Integration Design (Guided)">Guided</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_03_Integration_Completed.pdf" data-name="Paradox Thinking Canvas 03: Integration Design (Example)">Example</a></div></div>
+        <div class="canvas"><span class="num">04</span><div class="what"><h4>Contextual Differentiation Design</h4><p>Give different convictions primacy in different parts of the organisation.</p></div><div class="dls"><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_04_Contextual_Differentiation_Workshop.pdf" data-name="Paradox Thinking Canvas 04: Contextual Differentiation Design (Workshop)">Workshop</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_04_Contextual_Differentiation_Guided.pdf" data-name="Paradox Thinking Canvas 04: Contextual Differentiation Design (Guided)">Guided</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_04_Contextual_Differentiation_Completed.pdf" data-name="Paradox Thinking Canvas 04: Contextual Differentiation Design (Example)">Example</a></div></div>
+        <div class="canvas"><span class="num">05</span><div class="what"><h4>Dynamic Alternation Design</h4><p>Deliberately shift the dominant conviction when conditions change.</p></div><div class="dls"><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_05_Dynamic_Alternation_Workshop.pdf" data-name="Paradox Thinking Canvas 05: Dynamic Alternation Design (Workshop)">Workshop</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_05_Dynamic_Alternation_Guided.pdf" data-name="Paradox Thinking Canvas 05: Dynamic Alternation Design (Guided)">Guided</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_05_Dynamic_Alternation_Completed.pdf" data-name="Paradox Thinking Canvas 05: Dynamic Alternation Design (Example)">Example</a></div></div>
+        <div class="canvas"><span class="num">06</span><div class="what"><h4>Explore a Synthesis Design</h4><p>Test whether a new organising logic can create value beyond the original tension.</p></div><div class="dls"><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_06_Explore_a_Synthesis_Workshop.pdf" data-name="Paradox Thinking Canvas 06: Explore a Synthesis Design (Workshop)">Workshop</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_06_Explore_a_Synthesis_Guided.pdf" data-name="Paradox Thinking Canvas 06: Explore a Synthesis Design (Guided)">Guided</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_06_Explore_a_Synthesis_Completed.pdf" data-name="Paradox Thinking Canvas 06: Explore a Synthesis Design (Example)">Example</a></div></div>
+      </div>
+      <div class="phase p4">
+        <div class="phase-head"><b>4</b><div><h3>Learn</h3><p>Review the evidence and decide: continue, adapt, expand, discontinue or reconsider.</p></div></div>
+        <div class="canvas"><span class="num">07</span><div class="what"><h4>Strategic Learning Review</h4><p>Turn pilot evidence into a leadership decision and a new learning cycle.</p></div><div class="dls"><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_07_Strategic_Learning_Review_Workshop.pdf" data-name="Paradox Thinking Canvas 07: Strategic Learning Review (Workshop)">Workshop</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_07_Strategic_Learning_Review_Guided.pdf" data-name="Paradox Thinking Canvas 07: Strategic Learning Review (Guided)">Guided</a><a class="dl" href="account.html?signup=1&amp;next=toolkit" data-file="assets/whitepapers/InnoPlot_Canvas_07_Strategic_Learning_Review_Completed.pdf" data-name="Paradox Thinking Canvas 07: Strategic Learning Review (Example)">Example</a></div></div>
+      </div>
+    </section>
+
+    <div class="more">
+      <p>Want the full story behind the twelve innovation paradoxes? Read Koen’s books.</p>
+      <a class="btn" href="/">Go to the books
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<section class="wrap ip-wrap">
+  <div class="ip-band">
+    <div>
+      <span class="eyebrow">Work with InnoPlot</span>
+      <h2>Want this facilitated with your <em>management team</em>?</h2>
+      <p>The toolkit is built on the way InnoPlot works with leadership teams. Koen and the InnoPlot Academy run Paradox Thinking sessions as workshops and masterclasses, and InnoPlot’s senior experts help turn the outcome into execution.</p>
+    </div>
+    <div class="ip-cta">
+      <a class="btn mint" href="https://www.innoplot.com/blank-5" target="_blank" rel="noopener">Start the conversation ↗</a>
+      <a class="btn ghost" href="https://www.innoplot.com/blank-4" target="_blank" rel="noopener">InnoPlot Academy ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <img src="assets/innoplot-library-logo.png" alt="InnoPlot Library">
+      <p>Books, whitepapers and insights on innovation, strategy and AI by Koen Klokgieters.</p>
+    </div>
+    <div>
+      <h4>Library</h4>
+      <ul>
+        <li><a href="/">Books</a></li>
+        <li><a href="resources.html">Downloadable resources</a></li>
+        <li><a href="toolkit.html">Paradox Thinking Toolkit</a></li>
+        <li><a href="account.html">My library</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>InnoPlot</h4>
+      <ul>
+        <li><a href="https://www.innoplot.com" target="_blank" rel="noopener">innoplot.com ↗</a></li>
+        <li><a href="https://www.innoplot.com/blank-3" target="_blank" rel="noopener">Services</a></li>
+        <li><a href="https://www.innoplot.com/blank-4" target="_blank" rel="noopener">InnoPlot Academy</a></li>
+        <li><a href="https://www.innoplot.com/blank-5" target="_blank" rel="noopener">Start the conversation</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <address>
+        <!-- TODO: add the contact email address once confirmed -->
+        <a href="tel:+31646934577">+31 (0) 6 46 93 45 77</a><br>
+        Gebouw N, Haaksbergerstraat 67<br>
+        7554 PA Hengelo
+      </address>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 InnoPlot · The InnoPlot Library</span>
+    <span><a href="privacy.html">Privacy policy</a> · Hengelo | Rotterdam | Den Haag | Leiden | Bilthoven</span>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <div class="dialog" id="dialog">
+    <button class="close" type="button" aria-label="Close" id="close">×</button>
+    <div class="intro">
+      <span class="eyebrow">Free download</span>
+      <h3 id="mtitle">Get the PDF</h3>
+      <p>Enter your email address to unlock <span class="doc" id="docname"></span>. Your download will start right away.</p>
+    </div>
+    <form id="form">
+      <div class="field"><label for="email">Email address</label>
+        <input id="email" type="email" required placeholder="you@company.com" autocomplete="email"></div>
+      <label class="consent"><input type="checkbox" required> I agree that InnoPlot may email me this document.</label>
+      <button class="btn mint" type="submit">Send me the PDF</button>
+    </form>
+    <div class="ok">
+      <div class="tick">✓</div>
+      <h3>You're all set</h3>
+      <p>Your download has started. We've saved <strong id="sentto"></strong> so we can let you know about new resources.</p>
+      <p class="acc" id="acc-link" hidden><a href="account.html">Create a free account</a> to keep all your downloads in one place.</p>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4"></script>
+<script src="config.js"></script>
+<script src="library.js"></script>
+<script src="toolkit.js"></script>
+</body>
+</html>

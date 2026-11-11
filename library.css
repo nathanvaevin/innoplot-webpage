@@ -90,6 +90,21 @@ h1 em,h2 em{font-style:normal;color:var(--blue)}
 .ok .acc{margin:-8px 0 0;font-size:.88rem}
 .ok .acc a{color:var(--navy);font-weight:500}
 
+/* INNOPLOT.COM BAND */
+.ip-wrap{padding-bottom:90px}
+.ip-band{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:30px;background:var(--navy-deep);color:#fff;border-radius:28px;padding:50px 54px}
+.ip-band::after{content:"";position:absolute;width:420px;height:420px;right:-140px;top:-180px;background:radial-gradient(circle,rgba(91,155,213,.4),transparent 65%)}
+.ip-band>*{position:relative;z-index:1}
+.ip-band>div:first-child{flex:1 1 420px;max-width:640px}
+.ip-band .eyebrow{color:var(--mint)}
+.ip-band h2{font-size:clamp(1.7rem,3vw,2.4rem);margin:12px 0 14px}
+.ip-band p{color:#cfe0ee;font-size:.98rem}
+.ip-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.ip-pills span{font-size:.8rem;padding:6px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.22);color:#dbe7f1}
+.ip-cta{display:flex;flex-direction:column;gap:12px}
+.ip-cta .btn{justify-content:center}
+@media(max-width:640px){.ip-wrap{padding-bottom:60px}.ip-band{padding:34px 26px}.ip-cta{width:100%}}
+
 /* FOOTER */
 .site-foot{background:#fff;border-top:1px solid var(--line);margin-top:20px}
 .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:40px;padding-top:64px;padding-bottom:48px}

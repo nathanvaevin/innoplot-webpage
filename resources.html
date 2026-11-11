@@ -15,7 +15,7 @@
 .how span{display:inline-flex;align-items:center;gap:10px;font-size:.88rem;color:#dbe7f1;padding:9px 16px;border:1px solid rgba(255,255,255,.2);border-radius:99px;background:rgba(255,255,255,.05)}
 .how b{width:22px;height:22px;border-radius:50%;background:var(--mint);color:var(--navy-deep);display:grid;place-items:center;font-size:.75rem}
 
-.list{position:relative;z-index:2;margin-top:-70px;padding-bottom:110px}
+.list{position:relative;z-index:2;margin-top:-70px;padding-bottom:70px}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);padding:40px 44px 50px}
 .bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-bottom:34px}
 .bar h2{font-size:clamp(1.6rem,2.6vw,2.1rem);color:var(--navy)}
@@ -23,7 +23,17 @@
 .chip{font:500 .85rem 'Inter',sans-serif;padding:9px 18px;border-radius:99px;border:1px solid var(--line);background:var(--bg);color:var(--navy);cursor:pointer;transition:.2s}
 .chip:hover{border-color:var(--blue)}
 .chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
-.art[hidden]{display:none}
+.art[hidden],.feature[hidden]{display:none}
+.feature{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;margin-bottom:24px;padding:34px 36px;border-radius:22px;background:var(--navy);color:#fff;text-decoration:none;transition:.3s}
+.feature::after{content:"";position:absolute;width:340px;height:340px;right:-120px;top:-150px;background:radial-gradient(circle,rgba(94,209,160,.35),transparent 65%)}
+.feature>*{position:relative;z-index:1}
+.feature:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.feature>div{flex:1 1 380px;max-width:680px}
+.feature .eyebrow{color:var(--mint)}
+.feature h3{font-size:clamp(1.5rem,2.6vw,2rem);margin:10px 0 10px}
+.feature p{color:#cfe0ee;font-size:.96rem;margin-bottom:16px}
+.feature .themes{margin-bottom:0}
+.feature .themes span{background:rgba(255,255,255,.14);color:#fff}
 
 .back{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;margin-top:40px;padding:30px 36px;border-radius:22px;background:#eef4f8}
 .back p{color:var(--navy);font-family:'Fraunces',serif;font-size:1.3rem}
@@ -58,7 +68,7 @@
 <main class="list wrap">
   <div class="panel">
     <div class="bar">
-      <h2 id="list-title">All resources (16)</h2>
+      <h2 id="list-title">All resources (17)</h2>
       <div class="chips" role="group" aria-label="Filter resources by theme">
         <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
         <button class="chip" type="button" data-filter="innovation" aria-pressed="false">Innovation</button>
@@ -68,6 +78,18 @@
         <button class="chip" type="button" data-filter="tools" aria-pressed="false">Tools</button>
       </div>
     </div>
+
+    <a class="feature" href="toolkit.html" data-themes="innovation strategy tools">
+      <div>
+        <span class="eyebrow">New · Management toolkit</span>
+        <h3>Innovation Paradox Thinking Toolkit</h3>
+        <p>Seven A3 canvases and a facilitator guide that take a management team from a strategic tension to a tested response. Free with a library account.</p>
+        <div class="themes"><span>Innovation</span><span>Strategy</span><span>Tools</span></div>
+      </div>
+      <span class="btn mint">Open the toolkit
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+      </span>
+    </a>
 
     <div class="grid">
       <article class="art c3" data-themes="ai business">
@@ -195,6 +217,21 @@
   </div>
 </main>
 
+<section class="wrap ip-wrap">
+  <div class="ip-band">
+    <div>
+      <span class="eyebrow">The company behind the Library</span>
+      <h2>From insight to <em>impact</em>, with InnoPlot</h2>
+      <p>The Library shares the thinking. InnoPlot puts it to work: senior experts who help technology-driven organisations turn innovation ambition into measurable business results.</p>
+      <div class="ip-pills"><span>Consulting</span><span>Interim management</span><span>Coaching</span><span>InnoPlot Academy</span></div>
+    </div>
+    <div class="ip-cta">
+      <a class="btn mint" href="https://www.innoplot.com" target="_blank" rel="noopener">Visit InnoPlot.com ↗</a>
+      <a class="btn ghost" href="https://www.innoplot.com/blank-5" target="_blank" rel="noopener">Start the conversation ↗</a>
+    </div>
+  </div>
+</section>
+
 <footer class="site-foot">
   <div class="wrap foot-grid">
     <div class="foot-brand">
@@ -206,14 +243,17 @@
       <ul>
         <li><a href="/">Books</a></li>
         <li><a href="resources.html">Downloadable resources</a></li>
+        <li><a href="toolkit.html">Paradox Thinking Toolkit</a></li>
         <li><a href="account.html">My library</a></li>
       </ul>
     </div>
     <div>
       <h4>InnoPlot</h4>
       <ul>
-        <li><a href="https://innoplot.com" target="_blank" rel="noopener">innoplot.com ↗</a></li>
-        <li><a href="https://innoplot.com" target="_blank" rel="noopener">Business &amp; Technology Innovation</a></li>
+        <li><a href="https://www.innoplot.com" target="_blank" rel="noopener">innoplot.com ↗</a></li>
+        <li><a href="https://www.innoplot.com/blank-3" target="_blank" rel="noopener">Services</a></li>
+        <li><a href="https://www.innoplot.com/blank-4" target="_blank" rel="noopener">InnoPlot Academy</a></li>
+        <li><a href="https://www.innoplot.com/blank-5" target="_blank" rel="noopener">Start the conversation</a></li>
       </ul>
     </div>
     <div>
