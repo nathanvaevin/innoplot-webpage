@@ -3,7 +3,7 @@ const modal=document.getElementById('modal'),dialog=document.getElementById('dia
       form=document.getElementById('form'),toast=document.getElementById('toast');
 let current='',currentFile='';
 const accountsOn=!!(window.INNOPLOT_CONFIG||{}).supabaseUrl;
-if(!accountsOn)document.querySelectorAll('li > a[href="account.html"]').forEach(a=>a.parentElement.remove());
+if(!accountsOn)document.querySelectorAll('li > a[href="account"]').forEach(a=>a.parentElement.remove());
 
 function openModal(name,file){
   current=name;currentFile=file||'';
@@ -53,7 +53,7 @@ form.addEventListener('submit',e=>{
   const acc=document.getElementById('acc-link');
   if(acc){
     acc.hidden=!accountsOn||!!signedInEmail();
-    acc.querySelector('a').href='account.html?signup=1&email='+encodeURIComponent(email);
+    acc.querySelector('a').href='account?signup=1&email='+encodeURIComponent(email);
   }
   dialog.classList.add('sent');
   if(currentFile){

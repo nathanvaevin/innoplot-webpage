@@ -73,12 +73,12 @@ $('#login-form').addEventListener('submit', async e => {
 });
 
 $('#google').addEventListener('click', () =>
-  sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } }));
+  sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname.replace(/(\.html)?$/, '.html') } }));
 
 $('#forgot').addEventListener('click', async () => {
   const msg = $('#login-msg'), email = $('#l-email').value.trim();
   if (!email) { message(msg, 'Enter your email address first.', 'err'); return; }
-  await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
+  await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname.replace(/(\.html)?$/, '.html') });
   message(msg, 'If this address has access, a reset link is on its way.', 'ok');
 });
 

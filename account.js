@@ -9,7 +9,7 @@ const ORDER_STATUS = { paid: 'Paid · being prepared', shipped: 'Shipped', cance
 let sb, enteredAs = null;
 
 // Pages that send visitors here to sign in, and where to send them back afterwards.
-const RETURN_TO = { toolkit: 'toolkit.html' };
+const RETURN_TO = { toolkit: 'toolkit' };
 const NEXT_KEY = 'innoplot-next', NEXT_TTL = 60 * 60 * 1000;
 function rememberNext(next) {
   if (!RETURN_TO[next]) return;
@@ -28,7 +28,8 @@ const esc = v => String(v ?? '').replace(/[&<>"']/g, c =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const fmtDate = d => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const money = (cents, cur) => new Intl.NumberFormat('nl-NL', { style: 'currency', currency: (cur || 'eur').toUpperCase() }).format(cents / 100);
-const here = () => location.origin + location.pathname;
+// Auth redirects use the .html address: that is the one on Supabase's allow list.
+const here = () => location.origin + location.pathname.replace(/(\.html)?$/, '.html');
 
 function show(view) { VIEWS.forEach(v => { $('#view-' + v).hidden = v !== view; }); }
 function message(el, text, kind) { el.textContent = text; el.className = 'msg ' + kind; el.hidden = !text; }
@@ -167,7 +168,7 @@ function renderDownloads(rows) {
         <small>Downloaded ${fmtDate(d.created_at)}${d.count > 1 ? ` · ${d.count} times` : ''}</small></div>
       ${d.file && PDF_PATH.test(d.file) ? `<a class="btn" href="${esc(d.file)}" download>Download again</a>` : ''}
     </div>`).join('')
-    : '<div class="none">No downloads yet. <a href="resources.html">Browse the resources →</a></div>';
+    : '<div class="none">No downloads yet. <a href="resources">Browse the resources →</a></div>';
 }
 
 function renderOrders(rows) {
