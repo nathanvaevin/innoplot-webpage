@@ -92,3 +92,7 @@ document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
   const h=document.getElementById('list-title');
   if(h)h.textContent=(f==='all'?'All resources':c.textContent+' resources')+' ('+n+')';
 }));
+
+// A link such as resources?theme=young-professional opens with that theme selected.
+const wantedTheme=new URLSearchParams(location.search).get('theme');
+if(wantedTheme){const c=[...document.querySelectorAll('.chip')].find(x=>x.dataset.filter===wantedTheme);if(c)c.click();}

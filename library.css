@@ -58,6 +58,7 @@ h1 em,h2 em{font-style:normal;color:var(--blue)}
 .art{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:6px 14px 14px 6px;padding:30px 28px;display:flex;flex-direction:column;transition:.3s}
 .art.c2{border-left-color:var(--mint)}
 .art.c3{border-left-color:var(--gold)}
+.art.c4{border-left-color:#1f7f86}
 .art:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .tag{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between}
 .art h3{font-size:1.35rem;color:var(--navy);margin-bottom:12px}
